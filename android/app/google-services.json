@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "271868732814",
+    "project_id": "nove-store",
+    "storage_bucket": "nove-store.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271868732814:android:1d98bf06922f73d46d70df",
+        "android_client_info": {
+          "package_name": "com.example.nova_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU-Ksvybd8klrDi2yF7-7dps9pcyvOLgM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
