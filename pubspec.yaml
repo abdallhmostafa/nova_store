@@ -25,6 +25,15 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   very_good_analysis: ^6.0.0
+flutter_launcher_icons: 
+  android: true
+  ios: true
+  image_path: "assets/images/pngs/splash.png"
+  image_path_ios: "assets/images/pngs/splash.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/pngs/play_store_512.png"
+
+
 
 flutter:
   uses-material-design: true
