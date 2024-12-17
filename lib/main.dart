@@ -8,7 +8,7 @@ void main() async {
   await setup();
   runApp(const NovaStore());
 }
-
+// this function is used to initialize the app before running it
 Future<void> setup() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Future.wait([
