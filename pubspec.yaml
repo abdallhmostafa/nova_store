@@ -43,3 +43,24 @@ flutter:
     - assets/images/jsons/
     - assets/images/pngs/
     - assets/images/lotties/
+
+  fonts:
+    # English font
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/english/Poppins-Regular.ttf
+        - weight: 400
+        - asset: assets/fonts/english/Poppins-Medium.ttf
+        - weight: 500
+        - asset: assets/fonts/english/Poppins-Bold.ttf
+        - weight: 700
+
+    # Arabic font
+    - family: Cairo
+      fonts:
+        - asset: assets/fonts/arabic/Cairo-Regular.ttf
+        - weight: 400
+        - asset: assets/fonts/arabic/Cairo-Medium.ttf
+        - weight: 500
+        - asset: assets/fonts/arabic/Cairo-Bold.ttf
+        - weight: 700

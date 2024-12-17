@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nova_store/core/constants/app_constant.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -7,10 +8,25 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Nova Store'),
+        title: const Text(
+          'Nova Store',
+          style: TextStyle(
+            fontFamily: 'Poppins',
+          ),
+        ),
       ),
-      body: const Center(
-        child: Text('Welcome to Nova Store'),
+      body: const Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Welcome to Nova Store',
+              style: TextStyle(
+                fontFamily: AppConstant.arabicFontCairo,
+              )),
+          Text('Welcome to Nova Store',
+              style: TextStyle(
+                fontFamily: AppConstant.englishFontPoppins,
+              )),
+        ],
       ),
     );
   }
