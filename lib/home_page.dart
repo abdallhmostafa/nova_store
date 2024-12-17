@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nova_store/core/constants/app_constant.dart';
 import 'package:nova_store/core/extensions/context_extention.dart';
+import 'package:nova_store/core/lang/lang_keys.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -19,7 +20,7 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text('Welcome to Nova Store',
+          Text(context.translate(LangKeys.welcome),
               style: TextStyle(
                 fontFamily: AppConstant.arabicFontCairo,
               )),

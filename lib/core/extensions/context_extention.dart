@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nova_store/core/extensions/color_extention.dart';
 import 'package:nova_store/core/extensions/image_extention.dart';
+import 'package:nova_store/core/lang/app_localizations.dart';
 
 extension ContextExtention on BuildContext {
 // -------------------------- Color Extention -------------------------- //
@@ -8,6 +9,11 @@ extension ContextExtention on BuildContext {
 
 // -------------------------- Image Extention -------------------------- //
   ImageExtention get image => Theme.of(this).extension<ImageExtention>()!;
+
+// -------------------------- Language -------------------------- //
+
+  String translate(String langKey) =>
+      AppLocalizations.of(this)!.translate(langKey).toString();
 
   // -------------------------- Navigator -------------------------- //
   void pushNamed(String routeName, {Object? arguments}) {
