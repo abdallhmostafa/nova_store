@@ -43,6 +43,7 @@ flutter:
     - assets/images/jsons/
     - assets/images/pngs/
     - assets/images/lotties/
+    - assets/images/gifs/
 
   fonts:
     # English font

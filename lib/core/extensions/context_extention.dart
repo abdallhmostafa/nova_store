@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:nova_store/core/extensions/color_extention.dart';
+import 'package:nova_store/core/extensions/image_extention.dart';
 
 extension ContextExtention on BuildContext {
+// -------------------------- Color Extention -------------------------- //
+  ColorExtenstion get color => Theme.of(this).extension<ColorExtenstion>()!;
+
+// -------------------------- Image Extention -------------------------- //
+  ImageExtention get image => Theme.of(this).extension<ImageExtention>()!;
+
+  // -------------------------- Navigator -------------------------- //
   void pushNamed(String routeName, {Object? arguments}) {
     Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }
@@ -23,9 +32,11 @@ extension ContextExtention on BuildContext {
       arguments: arguments,
     );
   }
+
   void popUntil(bool Function(Route<dynamic>) predicate) {
     Navigator.of(this).popUntil(predicate);
   }
+
   void pop() {
     Navigator.of(this).pop();
   }

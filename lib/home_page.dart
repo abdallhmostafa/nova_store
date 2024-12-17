@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nova_store/core/constants/app_constant.dart';
+import 'package:nova_store/core/extensions/context_extention.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -15,17 +16,20 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: const Column(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Welcome to Nova Store',
               style: TextStyle(
                 fontFamily: AppConstant.arabicFontCairo,
               )),
-          Text('Welcome to Nova Store',
-              style: TextStyle(
-                fontFamily: AppConstant.englishFontPoppins,
-              )),
+          Text(
+            'Welcome to Nova Store',
+            style: TextStyle(
+              fontFamily: AppConstant.englishFontPoppins,
+              color: context.color.mainColor,
+            ),
+          ),
         ],
       ),
     );

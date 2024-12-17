@@ -5,8 +5,6 @@ import 'package:nova_store/core/routes/app_routes.dart';
 import 'package:nova_store/core/routes/app_routes_name.dart';
 import 'package:nova_store/core/themes/app_theme.dart';
 import 'package:nova_store/core/utils/connectivity_controller.dart';
-import 'package:nova_store/home_page.dart';
-
 class NovaStore extends StatelessWidget {
   const NovaStore({super.key});
 
@@ -35,7 +33,6 @@ class NovaStore extends StatelessWidget {
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               themeMode: ThemeMode.light,
-              home: const HomePage(),
             ),
           );
         } else {
