@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova_store/core/common/widgets/no_network_page.dart';
+import 'package:nova_store/core/routes/app_routes.dart';
+import 'package:nova_store/core/routes/app_routes_name.dart';
 import 'package:nova_store/core/themes/app_theme.dart';
 import 'package:nova_store/core/utils/connectivity_controller.dart';
 import 'package:nova_store/home_page.dart';
@@ -17,7 +19,6 @@ class NovaStore extends StatelessWidget {
           return ScreenUtilInit(
             designSize: const Size(375, 812),
             minTextAdapt: true,
-
             child: MaterialApp(
               builder: (context, child) => Scaffold(
                 body: Builder(
@@ -28,6 +29,8 @@ class NovaStore extends StatelessWidget {
                 ),
               ),
               title: 'Nova Store',
+              onGenerateRoute: AppRoutes.onGenerateRoute,
+              initialRoute: AppRoutesName.homePage,
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
