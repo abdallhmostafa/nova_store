@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nova_store/core/common/widgets/no_network.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:nova_store/core/common/widgets/no_network_page.dart';
 import 'package:nova_store/core/themes/app_theme.dart';
 import 'package:nova_store/core/utils/connectivity_controller.dart';
 import 'package:nova_store/home_page.dart';
@@ -13,21 +14,26 @@ class NovaStore extends StatelessWidget {
       valueListenable: ConnectivityController.instance.isConnected,
       builder: (_, value, __) {
         if (value) {
-          return MaterialApp(
-            builder: (context, child) => Scaffold(
-              body: Builder(
-                builder: (context) {
-                  ConnectivityController.instance.init();
-                  return child!;
-                },
+          return ScreenUtilInit(
+            designSize: const Size(375, 812),
+            minTextAdapt: true,
+
+            child: MaterialApp(
+              builder: (context, child) => Scaffold(
+                body: Builder(
+                  builder: (context) {
+                    ConnectivityController.instance.init();
+                    return child!;
+                  },
+                ),
               ),
+              title: 'Nova Store',
+              debugShowCheckedModeBanner: false,
+              theme: AppTheme.lightTheme,
+              darkTheme: AppTheme.darkTheme,
+              themeMode: ThemeMode.light,
+              home: const HomePage(),
             ),
-            title: 'Nova Store',
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: ThemeMode.light,
-            home: const HomePage(),
           );
         } else {
           return MaterialApp(
@@ -36,7 +42,7 @@ class NovaStore extends StatelessWidget {
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.light,
-            home: const NoNetwork(),
+            home: const NoNetworkPage(),
           );
         }
       },

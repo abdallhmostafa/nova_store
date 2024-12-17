@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:nova_store/core/styles/assets/app_json_assets.dart';
 
-class NoNetwork extends StatelessWidget {
-  const NoNetwork({super.key});
+class NoNetworkPage extends StatelessWidget {
+  const NoNetworkPage({super.key});
 
   @override
   Widget build(BuildContext context) {
