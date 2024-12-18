@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nova_store/core/extensions/asset_extention.dart';
 import 'package:nova_store/core/extensions/color_extention.dart';
-import 'package:nova_store/core/extensions/image_extention.dart';
 import 'package:nova_store/core/styles/colors/app_colors_dark.dart';
 import 'package:nova_store/core/styles/colors/app_colors_light.dart';
 
@@ -13,7 +13,7 @@ class AppTheme {
     primaryColor: Colors.blue,
     extensions: <ThemeExtension>[
       ColorExtenstion.light,
-      ImageExtention.light,
+      AssetExtention.light,
     ],
   );
 
@@ -23,7 +23,7 @@ class AppTheme {
     primaryColor: Colors.black,
     extensions: <ThemeExtension>[
       ColorExtenstion.dark,
-      ImageExtention.dark,
+      AssetExtention.dark,
     ],
   );
 }

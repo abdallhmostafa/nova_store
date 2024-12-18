@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nova_store/core/extensions/asset_extention.dart';
 import 'package:nova_store/core/extensions/color_extention.dart';
-import 'package:nova_store/core/extensions/image_extention.dart';
 import 'package:nova_store/core/lang/app_localizations.dart';
 
 extension ContextExtention on BuildContext {
@@ -8,7 +8,7 @@ extension ContextExtention on BuildContext {
   ColorExtenstion get color => Theme.of(this).extension<ColorExtenstion>()!;
 
 // -------------------------- Image Extention -------------------------- //
-  ImageExtention get image => Theme.of(this).extension<ImageExtention>()!;
+  AssetExtention get image => Theme.of(this).extension<AssetExtention>()!;
 
 // -------------------------- Language -------------------------- //
 

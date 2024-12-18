@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nova_store/core/styles/assets/app_image_assets.dart';
 
-class ImageExtention extends ThemeExtension<ImageExtention> {
-  ImageExtention({
+class AssetExtention extends ThemeExtension<AssetExtention> {
+  AssetExtention({
     this.bigNavBar,
     this.homeBg,
   });
@@ -11,37 +11,37 @@ class ImageExtention extends ThemeExtension<ImageExtention> {
   final String? homeBg;
 
   @override
-  ThemeExtension<ImageExtention> copyWith({
+  ThemeExtension<AssetExtention> copyWith({
     String? bigNavBar,
     String? homeBg,
   }) {
-    return ImageExtention(
+    return AssetExtention(
       bigNavBar: bigNavBar,
       homeBg: homeBg,
     );
   }
 
   @override
-  ThemeExtension<ImageExtention> lerp(
-    covariant ThemeExtension<ImageExtention>? other,
+  ThemeExtension<AssetExtention> lerp(
+    covariant ThemeExtension<AssetExtention>? other,
     double t,
   ) {
     {
-      if (other is! ImageExtention) {
+      if (other is! AssetExtention) {
         return this;
       }
-      return ImageExtention(
+      return AssetExtention(
         bigNavBar: bigNavBar,
         homeBg: homeBg,
       );
     }
   }
 
-  static final ImageExtention light = ImageExtention(
+  static final AssetExtention light = AssetExtention(
     bigNavBar: AppImageAssets.bigIconNavBarLight,
     homeBg: AppImageAssets.homeBgLight,
   );
-  static final ImageExtention dark = ImageExtention(
+  static final AssetExtention dark = AssetExtention(
     bigNavBar: AppImageAssets.bigIconNavBarDark,
     homeBg: AppImageAssets.homeBgDark,
   );
