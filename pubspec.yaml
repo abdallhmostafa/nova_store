@@ -31,10 +31,10 @@ dev_dependencies:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/images/pngs/splash.png"
-  image_path_ios: "assets/images/pngs/splash.png"
+  image_path: "assets/images/core/splash.png"
+  image_path_ios: "assets/images/core/splash.png"
   adaptive_icon_background: "#ffffff"
-  adaptive_icon_foreground: "assets/images/pngs/play_store_512.png"
+  adaptive_icon_foreground: "assets/images/core/play_store_512.png"
 
 flutter:
   uses-material-design: true
@@ -42,10 +42,13 @@ flutter:
   assets:
     - .env.production
     - .env.dev
-    - assets/images/jsons/
-    - assets/images/pngs/
-    - assets/images/lotties/
-    - assets/images/gifs/
+    - assets/jsons/
+    - assets/images/admin/
+    - assets/images/core/
+    - assets/images/customer/
+    - assets/lotties/
+    - assets/gifs/
+    - assets/vector/
     - lang/ar.json
     - lang/en.json
 

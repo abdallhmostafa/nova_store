@@ -3,13 +3,21 @@ import 'package:nova_store/core/styles/assets/app_image_assets.dart';
 
 class ImageExtention extends ThemeExtension<ImageExtention> {
   ImageExtention({
-    required this.logoTest,
+    this.bigNavBar,
+    this.homeBg,
   });
-  final String logoTest;
+
+  final String? bigNavBar;
+  final String? homeBg;
+
   @override
-  ThemeExtension<ImageExtention> copyWith() {
+  ThemeExtension<ImageExtention> copyWith({
+    String? bigNavBar,
+    String? homeBg,
+  }) {
     return ImageExtention(
-      logoTest: logoTest,
+      bigNavBar: bigNavBar,
+      homeBg: homeBg,
     );
   }
 
@@ -18,15 +26,23 @@ class ImageExtention extends ThemeExtension<ImageExtention> {
     covariant ThemeExtension<ImageExtention>? other,
     double t,
   ) {
-    return ImageExtention(
-      logoTest: logoTest,
-    );
+    {
+      if (other is! ImageExtention) {
+        return this;
+      }
+      return ImageExtention(
+        bigNavBar: bigNavBar,
+        homeBg: homeBg,
+      );
+    }
   }
 
   static final ImageExtention light = ImageExtention(
-    logoTest: AppImageAssets.logoLight,
+    bigNavBar: AppImageAssets.bigIconNavBarLight,
+    homeBg: AppImageAssets.homeBgLight,
   );
   static final ImageExtention dark = ImageExtention(
-    logoTest: AppImageAssets.logoDark,
+    bigNavBar: AppImageAssets.bigIconNavBarDark,
+    homeBg: AppImageAssets.homeBgDark,
   );
 }
