@@ -15,12 +15,14 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
     this.containerShadow2,
     this.containerLinear1,
     this.containerLinear2,
+    this.pinkLightWithOpacity,
   });
   final Color? mainColor;
   final Color? bluePinkDark;
   final Color? bluePinkLight;
   final Color? textColor;
   final Color? textFormBorder;
+  final Color? pinkLightWithOpacity;
   final Color? navBarbg;
   final Color? navBarSelectedTab;
   final Color? containerShadow1;
@@ -40,6 +42,7 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
     Color? containerShadow1,
     Color? containerShadow2,
     Color? containerLinear1,
+    Color? pinkLightWithOpacity,
   }) {
     return ColorExtenstion(
       mainColor: mainColor,
@@ -53,6 +56,7 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
       containerShadow2: containerShadow2,
       containerLinear1: containerLinear1,
       containerLinear2: containerLinear2,
+      pinkLightWithOpacity: pinkLightWithOpacity,
     );
   }
 
@@ -73,6 +77,7 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
       containerShadow2: containerShadow2,
       containerLinear1: containerLinear1,
       containerLinear2: containerLinear2,
+      pinkLightWithOpacity: pinkLightWithOpacity,
     );
   }
 
@@ -88,6 +93,7 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
     containerShadow2: AppColorsLight.white,
     containerLinear1: AppColorsLight.pinkDark,
     containerLinear2: AppColorsLight.pinkLight,
+    pinkLightWithOpacity: AppColorsLight.pinkLightWithOpacity,
   );
   static final ColorExtenstion dark = ColorExtenstion(
     mainColor: AppColorsDark.mainColor,
@@ -101,5 +107,6 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
     containerShadow2: AppColorsDark.black2,
     containerLinear1: AppColorsDark.black1,
     containerLinear2: AppColorsDark.black2,
+    pinkLightWithOpacity: AppColorsDark.blueLightWithOpacity
   );
 }

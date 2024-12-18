@@ -15,6 +15,10 @@ extension ContextExtention on BuildContext {
   String translate(String langKey) =>
       AppLocalizations.of(this)!.translate(langKey).toString();
 
+  // -------------------------- TextStyle -------------------------- //
+
+TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
+
   // -------------------------- Navigator -------------------------- //
   void pushNamed(String routeName, {Object? arguments}) {
     Navigator.of(this).pushNamed(routeName, arguments: arguments);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nova_store/core/common/widgets/no_network_page.dart';
+import 'package:nova_store/core/common/pages/no_network_page.dart';
 import 'package:nova_store/core/lang/app_localizations_setup.dart';
 import 'package:nova_store/core/routes/app_routes.dart';
 import 'package:nova_store/core/routes/app_routes_name.dart';
