@@ -21,11 +21,17 @@ class CustomLinearButton extends StatelessWidget {
       splashColor: context.color.pinkLightWithOpacity,
       onTap: onPressed,
       child: Container(
-        height: height ?? 44.h,
-        width: width ?? 44.w,
+        height: height,
+        width: width,
+        padding: EdgeInsets.symmetric(
+          horizontal: 14.w,
+          vertical: 10.h,
+        ),
         decoration: ShapeDecoration(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
           ),
           gradient: LinearGradient(
             colors: [

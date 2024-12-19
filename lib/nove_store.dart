@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova_store/core/common/pages/no_network_page.dart';
 import 'package:nova_store/core/lang/app_localizations_setup.dart';
 import 'package:nova_store/core/routes/app_routes.dart';
-import 'package:nova_store/core/routes/app_routes_name.dart';
+import 'package:nova_store/core/routes/routes_name.dart';
 import 'package:nova_store/core/themes/app_theme.dart';
 import 'package:nova_store/core/utils/connectivity_controller.dart';
 
@@ -37,11 +37,11 @@ class NovaStore extends StatelessWidget {
               ),
               title: 'Nova Store',
               onGenerateRoute: AppRoutes.onGenerateRoute,
-              initialRoute: AppRoutesName.homePage,
+              initialRoute: RoutesName.loginPage,
               debugShowCheckedModeBanner: false,
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
-              themeMode: ThemeMode.light,
+              themeMode: ThemeMode.dark,
               supportedLocales: AppLocalizationsSetup.supportedLocales,
               localeResolutionCallback:
                   AppLocalizationsSetup.localeResolutionCallback,
