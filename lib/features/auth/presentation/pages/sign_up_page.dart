@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nova_store/features/auth/presentation/refactors/login_body.dart';
 import 'package:nova_store/features/auth/presentation/widgets/auth_custom_paint.dart';
+import 'package:nova_store/features/auth/presentation/widgets/sign_up/sign_up_body.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,5 +13,5 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  SafeArea _body() => const SafeArea(bottom: false, child: LoginBody());
+  SafeArea _body() => const SafeArea(bottom: false, child: SignUpBody());
 }

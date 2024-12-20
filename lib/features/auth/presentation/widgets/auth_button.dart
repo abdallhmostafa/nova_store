@@ -8,17 +8,22 @@ import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
 import 'package:nova_store/core/styles/fonts/font_wieght_helper.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({super.key});
-
+class AuthButton extends StatelessWidget {
+  const AuthButton({
+    required this.onPressed,
+    this.isLogin = true,
+    super.key,
+  });
+  final void Function() onPressed;
+  final bool isLogin;
   @override
   Widget build(BuildContext context) {
     return CustomFadeInUp(
       duration: AppConstant.fadeInDuration,
       child: CustomLinearButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: TextApp(
-          text: context.translate(LangKeys.login),
+          text: context.translate(isLogin ? LangKeys.login : LangKeys.signUp),
           theme: context.textStyle
               .copyWith(fontSize: 18.sp, fontWeight: FontWieghtHelper.bold),
         ),

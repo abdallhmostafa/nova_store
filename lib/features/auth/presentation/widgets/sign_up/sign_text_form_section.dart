@@ -6,10 +6,10 @@ import 'package:nova_store/core/constants/app_constant.dart';
 import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
 import 'package:nova_store/core/utils/app_regex.dart';
-import 'package:nova_store/features/auth/presentation/widgets/password_text_feild.dart';
+import 'package:nova_store/features/auth/presentation/widgets/sign_up/password_and_confirem_section.dart';
 
-class LoginTextFormSection extends StatelessWidget {
-  const LoginTextFormSection({super.key});
+class SignTextFormSection extends StatelessWidget {
+  const SignTextFormSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +18,21 @@ class LoginTextFormSection extends StatelessWidget {
         spacing: 25.h,
         children: [
           CustomFadeInLeft(
+            duration: AppConstant.fadeInDuration,
+            child: CustomTextField(
+              hintText: context.translate(LangKeys.fullName),
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your full name';
+                } else if (value.length < 3) {
+                  return 'Full name must be at least 3 characters';
+                }
+                return null;
+              },
+              controller: TextEditingController(),
+            ),
+          ),
+          CustomFadeInRight(
             duration: AppConstant.fadeInDuration,
             child: CustomTextField(
               hintText: context.translate(LangKeys.email),
@@ -32,8 +47,9 @@ class LoginTextFormSection extends StatelessWidget {
               controller: TextEditingController(),
             ),
           ),
-          PasswordTextFeild(
-            controller: TextEditingController(),
+          CustomFadeInRight(
+            duration: AppConstant.fadeInDuration,
+            child: const PasswordAndConfiremSection(),
           ),
         ],
       ),

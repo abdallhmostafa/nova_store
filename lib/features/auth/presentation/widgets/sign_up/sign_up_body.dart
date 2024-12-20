@@ -11,10 +11,11 @@ import 'package:nova_store/core/utils/space.dart';
 import 'package:nova_store/features/auth/presentation/widgets/auth_button.dart';
 import 'package:nova_store/features/auth/presentation/widgets/auth_title_section.dart';
 import 'package:nova_store/features/auth/presentation/widgets/dark_and_lang_section.dart';
-import 'package:nova_store/features/auth/presentation/widgets/login/login_text_form_section.dart';
+import 'package:nova_store/features/auth/presentation/widgets/sign_up/sign_text_form_section.dart';
+import 'package:nova_store/features/auth/presentation/widgets/sign_up/sign_up_avatar_image.dart';
 
-class LoginBody extends StatelessWidget {
-  const LoginBody({super.key});
+class SignUpBody extends StatelessWidget {
+  const SignUpBody({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,21 +31,23 @@ class LoginBody extends StatelessWidget {
             const DarkAndLangSection(),
             verticalSpace(20),
             AuthTitleSection(
-              title: context.translate(LangKeys.login),
-              description: context.translate(LangKeys.welcome),
+              title: context.translate(LangKeys.signUp),
+              description: context.translate(LangKeys.signUpWelcome),
             ),
-            const LoginTextFormSection(),
+            const SignUpAvatarImage(),
+            const SignTextFormSection(),
             AuthButton(
+              isLogin: false,
               onPressed: () {},
             ),
             CustomFadeInUp(
               duration: AppConstant.fadeInDuration,
               child: GestureDetector(
                 onTap: () {
-                  context.pushReplacementNamed(RoutesName.signUpPage);
+                  context.pushReplacementNamed(RoutesName.loginPage);
                 },
                 child: TextApp(
-                  text: context.translate(LangKeys.createAccount),
+                  text: context.translate(LangKeys.youHaveAccount),
                   theme: context.textStyle.copyWith(
                     fontSize: 16.sp,
                     fontWeight: FontWieghtHelper.bold,
