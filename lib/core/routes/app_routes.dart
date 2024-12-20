@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nova_store/core/common/widgets/under_build_page.dart';
-import 'package:nova_store/core/routes/app_routes_name.dart';
+import 'package:nova_store/core/common/pages/under_build_page.dart';
 import 'package:nova_store/core/routes/base_route.dart';
+import 'package:nova_store/core/routes/routes_name.dart';
+import 'package:nova_store/features/auth/presentation/pages/login_page.dart';
+import 'package:nova_store/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:nova_store/home_page.dart';
 
 class AppRoutes {
@@ -10,9 +12,12 @@ class AppRoutes {
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case AppRoutesName.homePage:
+      case RoutesName.homePage:
         return BaseRoute(page: const HomePage());
-
+      case RoutesName.loginPage:
+        return BaseRoute(page: const LoginPage());
+      case RoutesName.signUpPage:
+        return BaseRoute(page: const SignUpPage());
       default:
         return BaseRoute(page: const UnderBuildPage());
     }
