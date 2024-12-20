@@ -24,7 +24,7 @@ class AuthTitleSection extends StatelessWidget {
           TextApp(
             text: title,
             theme: context.textStyle.copyWith(
-              fontSize: 24.sp,
+              fontSize: 26.sp,
               fontWeight: FontWieghtHelper.bold,
               color: context.color.textColor,
             ),
@@ -33,7 +33,7 @@ class AuthTitleSection extends StatelessWidget {
             text: description,
             textAlign: TextAlign.center,
             theme: context.textStyle.copyWith(
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               fontWeight: FontWieghtHelper.medium,
               color: context.color.textColor,
             ),

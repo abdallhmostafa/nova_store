@@ -20,6 +20,9 @@ class CustomLinearButton extends StatelessWidget {
     return InkWell(
       splashColor: context.color.pinkLightWithOpacity,
       onTap: onPressed,
+      borderRadius: const BorderRadius.all(
+        Radius.circular(10),
+      ),
       child: Container(
         height: height,
         width: width,
