@@ -5,10 +5,7 @@ import 'package:nova_store/features/auth/presentation/refactors/auth_custom_pain
 
 CustomPaint authCustomPaint(BuildContext context) {
   return CustomPaint(
-    size: Size(
-      double.infinity,
-      150.h,
-    ),
+    size: Size.fromHeight(150.h),
     foregroundPainter: AuthCustomPainter(
       gradient: LinearGradient(
         colors: [

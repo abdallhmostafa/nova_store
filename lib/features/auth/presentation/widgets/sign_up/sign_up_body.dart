@@ -7,7 +7,6 @@ import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
 import 'package:nova_store/core/routes/routes_name.dart';
 import 'package:nova_store/core/styles/fonts/font_wieght_helper.dart';
-import 'package:nova_store/core/utils/space.dart';
 import 'package:nova_store/features/auth/presentation/widgets/auth_button.dart';
 import 'package:nova_store/features/auth/presentation/widgets/auth_title_section.dart';
 import 'package:nova_store/features/auth/presentation/widgets/dark_and_lang_section.dart';
@@ -29,7 +28,6 @@ class SignUpBody extends StatelessWidget {
           spacing: 30.h,
           children: [
             const DarkAndLangSection(),
-            verticalSpace(20),
             AuthTitleSection(
               title: context.translate(LangKeys.signUp),
               description: context.translate(LangKeys.signUpWelcome),
