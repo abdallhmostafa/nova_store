@@ -24,8 +24,11 @@ class AuthButton extends StatelessWidget {
         onPressed: onPressed,
         child: TextApp(
           text: context.translate(isLogin ? LangKeys.login : LangKeys.signUp),
-          theme: context.textStyle
-              .copyWith(fontSize: 18.sp, fontWeight: FontWieghtHelper.bold),
+          theme: context.textStyle.copyWith(
+            fontSize: 18.sp,
+            fontWeight: FontWieghtHelper.bold,
+            color: Colors.white,
+          ),
         ),
       ),
     );

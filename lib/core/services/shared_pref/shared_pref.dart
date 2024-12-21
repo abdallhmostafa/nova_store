@@ -1,17 +1,15 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
-  factory SharedPref() {
-    return preferences;
-  }
+  factory SharedPref() => _instance;
 
-  SharedPref._internal();
-  static final SharedPref preferences = SharedPref._internal();
+  SharedPref._();
+  static final SharedPref _instance = SharedPref._();
 
   static late SharedPreferences sharedPreferences;
 
   ///Below method is to initialize the SharedPreference instance.
-  Future<dynamic> instantiatePreferences() async {
+ static Future<dynamic> instantiatePreferences() async {
     sharedPreferences = await SharedPreferences.getInstance();
   }
 
@@ -31,12 +29,12 @@ class SharedPref {
   }
 
   ///Below method is to set the boolean value in the SharedPreferences.
-  Future<dynamic> setBoolean(String key, {required bool booleanValue}) async {
+ static Future<dynamic> setBoolean(String key, {required bool booleanValue}) async {
     await sharedPreferences.setBool(key, booleanValue);
   }
 
   ///Below method is to get the boolean value from the SharedPreferences.
-  bool? getBoolean(String key) {
+ static bool? getBoolean(String key) {
     return sharedPreferences.getBool(key);
   }
 
