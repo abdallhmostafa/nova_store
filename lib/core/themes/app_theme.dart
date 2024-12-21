@@ -5,9 +5,7 @@ import 'package:nova_store/core/styles/colors/app_colors_dark.dart';
 import 'package:nova_store/core/styles/colors/app_colors_light.dart';
 import 'package:nova_store/core/styles/fonts/font_family_helper.dart';
 
-class AppTheme {
-  AppTheme._();
-
+abstract class AppTheme {
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: AppColorsLight.mainColor,
     brightness: Brightness.light,
