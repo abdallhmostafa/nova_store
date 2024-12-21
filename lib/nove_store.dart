@@ -7,8 +7,6 @@ import 'package:nova_store/core/di/dependency_injection.dart';
 import 'package:nova_store/core/lang/app_localizations_setup.dart';
 import 'package:nova_store/core/routes/app_routes.dart';
 import 'package:nova_store/core/routes/routes_name.dart';
-import 'package:nova_store/core/services/shared_pref/pref_keys.dart';
-import 'package:nova_store/core/services/shared_pref/shared_pref.dart';
 import 'package:nova_store/core/themes/app_theme.dart';
 import 'package:nova_store/core/utils/connectivity_controller.dart';
 
@@ -23,14 +21,15 @@ class NovaStore extends StatelessWidget {
         if (value) {
           return BlocProvider(
             create: (context) => serviceLocator.get<AppCubit>()
-              ..changeTheme(
-                themeMode: SharedPref.getBoolean(PrefKeys.themeMode),
-              ),
+              ..getTheme()
+              ..getLanguage(),
             child: ScreenUtilInit(
               designSize: const Size(375, 812),
               minTextAdapt: true,
               child: BlocBuilder<AppCubit, AppState>(
-                buildWhen: (previous, current) => current is ThemeChangedMode,
+                buildWhen: (previous, current) =>
+                    current is ThemeChangedMode ||
+                    current is ChangeLanguageState,
                 builder: (context, state) {
                   final cubit = context.read<AppCubit>();
                   return MaterialApp(
@@ -54,6 +53,7 @@ class NovaStore extends StatelessWidget {
                     initialRoute: RoutesName.loginPage,
                     debugShowCheckedModeBanner: false,
                     theme: AppTheme.lightTheme,
+                    locale: Locale(cubit.currentLanguage),
                     themeMode:
                         cubit.isDarkMode ? ThemeMode.dark : ThemeMode.light,
                     darkTheme: AppTheme.darkTheme,

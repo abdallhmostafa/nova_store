@@ -41,7 +41,7 @@ class DarkAndLangSection extends StatelessWidget {
             builder: (context, state) {
               return CustomLinearButton(
                 width: 100.w,
-                onPressed: () {},
+                onPressed: cubit.changeLanguage,
                 child: TextApp(
                   text: context.translate(LangKeys.language),
                   theme: context.textStyle.copyWith(

@@ -19,12 +19,12 @@ class SharedPref {
   }
 
   ///Below method is to set the string value in the SharedPreferences.
-  Future<dynamic> setString(String key, String stringValue) async {
+ static Future<dynamic> setString(String key, String stringValue) async {
     await sharedPreferences.setString(key, stringValue);
   }
 
   ///Below method is to get the string value from the SharedPreferences.
-  String? getString(String key) {
+  static String? getString(String key) {
     return sharedPreferences.getString(key);
   }
 
