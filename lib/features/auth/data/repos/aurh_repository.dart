@@ -5,5 +5,5 @@ import 'package:nova_store/features/auth/data/model/user_role_response.dart';
 
 abstract class AuthRepository {
   Future<ApiResult<LoginResponse>> login({required LoginRequest loginRequest});
-  Future<ApiResult<UserRoleResponse>> getUserRole();
+  Future<ApiResult<UserRoleResponse>> getUserRole({required String token});
 }

@@ -1,7 +1,5 @@
-import 'package:nova_store/core/api/api_error_model.dart';
 import 'package:nova_store/core/api/api_result.dart';
 import 'package:nova_store/core/api/error_handler.dart';
-import 'package:nova_store/core/api/graphql_error_model.dart';
 import 'package:nova_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:nova_store/features/auth/data/model/login_request.dart';
 import 'package:nova_store/features/auth/data/model/login_response.dart';
@@ -20,7 +18,7 @@ class AuthRepositoryImpl extends AuthRepository {
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.failure(
-        ErrorHandler.handle<GraphqlErrorModel>(
+        ErrorHandler.handle(
           isGraphql: true,
           error: e,
         ),
@@ -29,13 +27,15 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<ApiResult<UserRoleResponse>> getUserRole() async {
+  Future<ApiResult<UserRoleResponse>> getUserRole({
+    required String token,
+  }) async {
     try {
-      final response = await _authDataSource.getUserRole();
+      final response = await _authDataSource.getUserRole(token: token);
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.failure(
-        ErrorHandler.handle<ApiErrorModel>(
+        ErrorHandler.handle(
           isGraphql: false,
           error: e,
         ),

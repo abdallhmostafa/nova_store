@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:nova_store/features/auth/data/model/login_request.dart';
 import 'package:nova_store/features/auth/data/model/login_response.dart';
 import 'package:nova_store/features/auth/data/model/user_role_response.dart';
 import 'package:retrofit/retrofit.dart';

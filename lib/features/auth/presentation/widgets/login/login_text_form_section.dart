@@ -3,16 +3,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova_store/core/common/animation/animate_do.dart';
 import 'package:nova_store/core/common/widgets/custom_text_field.dart';
 import 'package:nova_store/core/constants/app_constant.dart';
+import 'package:nova_store/core/di/dependency_injection.dart';
 import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
 import 'package:nova_store/core/utils/app_regex.dart';
+import 'package:nova_store/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:nova_store/features/auth/presentation/widgets/password_text_feild.dart';
 
 class LoginTextFormSection extends StatelessWidget {
-  const LoginTextFormSection({super.key});
-
+   LoginTextFormSection({super.key});
+  final AuthBloc authBloc = serviceLocator<AuthBloc>();
   @override
   Widget build(BuildContext context) {
+
     return Form(
       child: Column(
         spacing: 25.h,
@@ -29,11 +32,11 @@ class LoginTextFormSection extends StatelessWidget {
                 }
                 return null;
               },
-              controller: TextEditingController(),
+              controller: authBloc.emailController,
             ),
           ),
           PasswordTextFeild(
-            controller: TextEditingController(),
+            controller: authBloc.passwordController,
           ),
         ],
       ),
