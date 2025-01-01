@@ -20,7 +20,9 @@ class AuthRepositoryImpl extends AuthRepository {
       return NetworkResult.success(response);
     } catch (e) {
       return NetworkResult.failure(
-        error: ErrorHandler.handleGraphqlError(error: e),
+        error: ErrorHandler.handleGraphqlError(
+          graphqlError: GraphqlErrorModel.fromJson(e as Map<String, dynamic>),
+        ),
       );
     }
   }

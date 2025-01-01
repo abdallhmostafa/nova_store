@@ -34,7 +34,7 @@ class DioFactory {
         compact: false,
         requestHeader: true,
         requestBody: true,
-        responseHeader: true,
+        // responseHeader: true,
       ),
     );
   }

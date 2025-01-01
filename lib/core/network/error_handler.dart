@@ -4,117 +4,99 @@ import 'package:nova_store/core/network/graphql/graphql_error_model.dart';
 
 class ErrorHandler {
   static GraphqlErrorModel handleGraphqlError({
-    dynamic error,
+    required GraphqlErrorModel graphqlError,
   }) {
-    if (error is DioException) {
-      switch (error.type) {
-        case DioExceptionType.connectionTimeout:
-          return GraphqlErrorModel(
-            errors: [
-              Error(
-                extensions: Extensions(
-                  originalError: OriginalError(
-                    message: error.message ?? 'Connection Timeout',
-                    statusCode: 408,
-                  ),
-                ),
-              ),
-            ],
-          );
-
-        case DioExceptionType.sendTimeout:
-          return GraphqlErrorModel(
-            errors: [
-              Error(
-                extensions: Extensions(
-                  originalError: OriginalError(
-                    message: error.message ?? 'Send Timeout',
-                    statusCode: 408,
-                  ),
-                ),
-              ),
-            ],
-          );
-        case DioExceptionType.receiveTimeout:
-          return GraphqlErrorModel(
-            errors: [
-              Error(
-                extensions: Extensions(
-                  originalError: OriginalError(
-                    message: error.message ?? 'Receive Timeout',
-                    statusCode: 408,
-                  ),
-                ),
-              ),
-            ],
-          );
-        case DioExceptionType.badResponse:
-          return _graphqlErrorModel(error);
-
-        case DioExceptionType.unknown:
-          if (error.response != null &&
-              error.response?.statusCode != null &&
-              error.response?.statusMessage != null) {
-            return _graphqlErrorModel(error);
-          } else {
+    if (graphqlError.errors != null && graphqlError.errors!.isNotEmpty) {
+      for (final error in graphqlError.errors!) {
+        // Handle specific error codes
+        switch (error.extensions?.code) {
+          case 'UNAUTHENTICATED':
             return GraphqlErrorModel(
-              errors: [
-                Error(
-                  extensions: Extensions(
-                    originalError: OriginalError(
-                      message: error.message ?? 'Unknown Error',
-                      statusCode: 500,
-                    ),
-                  ),
-                ),
-              ],
+              data: graphqlError.data,
+              errors: graphqlError.errors,
             );
-          }
-        case DioExceptionType.cancel:
-          return GraphqlErrorModel(
-            errors: [
-              Error(
-                extensions: Extensions(
-                  originalError: OriginalError(
-                    message: error.message ?? 'Request Cancelled',
-                    statusCode: 500,
-                  ),
-                ),
-              ),
-            ],
-          );
-        case DioExceptionType.connectionError:
-          return GraphqlErrorModel(
-            errors: [
-              Error(
-                extensions: Extensions(
-                  originalError: OriginalError(
-                    message: error.message ?? 'Connection Error',
-                    statusCode: 500,
-                  ),
-                ),
-              ),
-            ],
-          );
-        case DioExceptionType.badCertificate:
-          return GraphqlErrorModel(
-            errors: [
-              Error(
-                extensions: Extensions(
-                  originalError: OriginalError(
-                    message: error.message ?? 'Bad Certificate',
-                    statusCode: 500,
-                  ),
-                ),
-              ),
-            ],
-          );
+          // Redirect to login screen or show error message
+
+          case 'BAD_USER_INPUT':
+            return GraphqlErrorModel(
+              data: graphqlError.data,
+              errors: graphqlError.errors,
+            );
+          // Highlight incorrect fields in UI
+
+          case 'FORBIDDEN':
+            return GraphqlErrorModel(
+              data: graphqlError.data,
+              errors: graphqlError.errors,
+            );
+          // Show access denied message
+
+          case 'INTERNAL_SERVER_ERROR':
+            return GraphqlErrorModel(
+              data: graphqlError.data,
+              errors: graphqlError.errors,
+            );
+          // Display server error notification
+
+          case 'GRAPHQL_VALIDATION_FAILED':
+            return GraphqlErrorModel(
+              data: graphqlError.data,
+              errors: graphqlError.errors,
+            );
+          // Log validation issues
+
+          default:
+           // Handle HTTP Status Codes (if present)
+            if (error.extensions?.originalError?.statusCode != null) {
+              switch (error.extensions!.originalError!.statusCode) {
+                case 400:
+                        return GraphqlErrorModel(
+                      data: graphqlError.data,
+                      errors: graphqlError.errors,
+                    );
+                case 401:
+                  return GraphqlErrorModel(
+                    data: graphqlError.data,
+                    errors: graphqlError.errors,
+                  );
+                case 403:
+                  return GraphqlErrorModel(
+                    data: graphqlError.data,
+                    errors: graphqlError.errors,
+                  );
+                case 404:
+                  return GraphqlErrorModel(
+                    data: graphqlError.data,
+                    errors: graphqlError.errors,
+                  );
+                case 500:
+                  return GraphqlErrorModel(
+                    data: graphqlError.data,
+                    errors: graphqlError.errors,
+                  );
+                default:
+                  return GraphqlErrorModel(
+                    data: graphqlError.data,
+                    errors: graphqlError.errors,
+                  );
+              }
+            }
+          // Handle unknown errors
+        }
+        
+
+      
       }
     } else {
-      // default error
-
-      return _graphqlErrorModel(error);   
+      return GraphqlErrorModel(
+        data: graphqlError.data,
+        errors: graphqlError.errors,
+      );
     }
+    return GraphqlErrorModel(
+        data: graphqlError.data,
+        errors: graphqlError.errors,
+      );
   }
 
   static ApiErrorModel handleApiError({
@@ -168,10 +150,7 @@ class ErrorHandler {
 }
 
 ApiErrorModel _handleError(dynamic error) {
-  return ApiErrorModel(
-    message: error['error'] as String?,
-    statusCode: error['statusCode'] as int?,
-  );
+  return ApiErrorModel.fromJson(error as Map<String, dynamic>);
 }
 
 GraphqlErrorModel _graphqlErrorModel(dynamic error) {

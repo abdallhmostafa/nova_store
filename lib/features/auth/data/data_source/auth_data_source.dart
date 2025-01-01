@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:nova_store/core/graphql/auth/auth_graphql.dart';
 import 'package:nova_store/core/network/api_service.dart';
@@ -22,6 +20,7 @@ class AuthDataSource {
     final response = await apiService.login(
       authGraphql.loginGraphql(loginRequest: loginRequest),
     );
+    
     return response;
   }
 
@@ -30,7 +29,7 @@ class AuthDataSource {
     dio.options.headers['Authorization'] = 'Bearer $token';
     final client = ApiService(dio);
     final response = await client.getUserRole();
-    log('Token: $token');
+    // log('Token: $token');
     return response;
   }
 }

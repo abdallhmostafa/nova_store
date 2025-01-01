@@ -24,7 +24,7 @@ class LoginBlocListner extends StatelessWidget {
                 RoutesName.adminHomePage,
                 (route) => false,
               );
-            } else if (userRole == 'client') {
+            } else if (userRole == 'customer') {
               context.pushNamedAndRemoveUntil(
                 RoutesName.clientHomePage,
                 (route) => false,

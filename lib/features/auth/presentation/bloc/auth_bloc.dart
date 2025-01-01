@@ -44,12 +44,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
           PrefKeys.refreshToken,
           refreshToken,
         );
-        final userRole = await _getUserRole(token);
+        // final userRole = await _getUserRole(token);
      
         emit(
           AuthState.loginSuccess(
             response: data,
-            userRole: userRole,
+            userRole: '',
           ),
         );
       },

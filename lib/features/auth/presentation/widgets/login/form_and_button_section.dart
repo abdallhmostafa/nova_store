@@ -15,7 +15,6 @@ class FormAndButtonSection extends StatelessWidget {
       spacing: 25.h,
       children: [
         const LoginTextFormSection(),
-        const LoginBlocListner(),
         BlocBuilder<AuthBloc, AuthState>(
           builder: (context, state) {
             final authBloc = context.read<AuthBloc>();
@@ -34,6 +33,7 @@ class FormAndButtonSection extends StatelessWidget {
             );
           },
         ),
+        const LoginBlocListner(),
       ],
     );
   }
