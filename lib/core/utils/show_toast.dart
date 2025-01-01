@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-class ShowToast {
+final class ShowToast {
   const ShowToast._();
 
   static void showToastErrorTop({

@@ -562,7 +562,8 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic response, String? userRole) success,
+    required TResult Function(LoginResponse response, String? userRole)
+        loginSuccess,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -570,7 +571,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic response, String? userRole)? success,
+    TResult? Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -578,7 +579,7 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic response, String? userRole)? success,
+    TResult Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -587,7 +588,7 @@ mixin _$AuthState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingState value) loading,
-    required TResult Function(_SuccessState value) success,
+    required TResult Function(_LoginSuccessState value) loginSuccess,
     required TResult Function(_ErrorState value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -595,7 +596,7 @@ mixin _$AuthState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingState value)? loading,
-    TResult? Function(_SuccessState value)? success,
+    TResult? Function(_LoginSuccessState value)? loginSuccess,
     TResult? Function(_ErrorState value)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -603,7 +604,7 @@ mixin _$AuthState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingState value)? loading,
-    TResult Function(_SuccessState value)? success,
+    TResult Function(_LoginSuccessState value)? loginSuccess,
     TResult Function(_ErrorState value)? error,
     required TResult orElse(),
   }) =>
@@ -673,7 +674,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic response, String? userRole) success,
+    required TResult Function(LoginResponse response, String? userRole)
+        loginSuccess,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -684,7 +686,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic response, String? userRole)? success,
+    TResult? Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -695,7 +697,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic response, String? userRole)? success,
+    TResult Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -710,7 +712,7 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingState value) loading,
-    required TResult Function(_SuccessState value) success,
+    required TResult Function(_LoginSuccessState value) loginSuccess,
     required TResult Function(_ErrorState value) error,
   }) {
     return initial(this);
@@ -721,7 +723,7 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingState value)? loading,
-    TResult? Function(_SuccessState value)? success,
+    TResult? Function(_LoginSuccessState value)? loginSuccess,
     TResult? Function(_ErrorState value)? error,
   }) {
     return initial?.call(this);
@@ -732,7 +734,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingState value)? loading,
-    TResult Function(_SuccessState value)? success,
+    TResult Function(_LoginSuccessState value)? loginSuccess,
     TResult Function(_ErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -790,7 +792,8 @@ class _$LoadingStateImpl implements _LoadingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic response, String? userRole) success,
+    required TResult Function(LoginResponse response, String? userRole)
+        loginSuccess,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -801,7 +804,7 @@ class _$LoadingStateImpl implements _LoadingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic response, String? userRole)? success,
+    TResult? Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -812,7 +815,7 @@ class _$LoadingStateImpl implements _LoadingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic response, String? userRole)? success,
+    TResult Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -827,7 +830,7 @@ class _$LoadingStateImpl implements _LoadingState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingState value) loading,
-    required TResult Function(_SuccessState value) success,
+    required TResult Function(_LoginSuccessState value) loginSuccess,
     required TResult Function(_ErrorState value) error,
   }) {
     return loading(this);
@@ -838,7 +841,7 @@ class _$LoadingStateImpl implements _LoadingState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingState value)? loading,
-    TResult? Function(_SuccessState value)? success,
+    TResult? Function(_LoginSuccessState value)? loginSuccess,
     TResult? Function(_ErrorState value)? error,
   }) {
     return loading?.call(this);
@@ -849,7 +852,7 @@ class _$LoadingStateImpl implements _LoadingState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingState value)? loading,
-    TResult Function(_SuccessState value)? success,
+    TResult Function(_LoginSuccessState value)? loginSuccess,
     TResult Function(_ErrorState value)? error,
     required TResult orElse(),
   }) {
@@ -865,20 +868,20 @@ abstract class _LoadingState implements AuthState {
 }
 
 /// @nodoc
-abstract class _$$SuccessStateImplCopyWith<$Res> {
-  factory _$$SuccessStateImplCopyWith(
-          _$SuccessStateImpl value, $Res Function(_$SuccessStateImpl) then) =
-      __$$SuccessStateImplCopyWithImpl<$Res>;
+abstract class _$$LoginSuccessStateImplCopyWith<$Res> {
+  factory _$$LoginSuccessStateImplCopyWith(_$LoginSuccessStateImpl value,
+          $Res Function(_$LoginSuccessStateImpl) then) =
+      __$$LoginSuccessStateImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({dynamic response, String? userRole});
+  $Res call({LoginResponse response, String? userRole});
 }
 
 /// @nodoc
-class __$$SuccessStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$SuccessStateImpl>
-    implements _$$SuccessStateImplCopyWith<$Res> {
-  __$$SuccessStateImplCopyWithImpl(
-      _$SuccessStateImpl _value, $Res Function(_$SuccessStateImpl) _then)
+class __$$LoginSuccessStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$LoginSuccessStateImpl>
+    implements _$$LoginSuccessStateImplCopyWith<$Res> {
+  __$$LoginSuccessStateImplCopyWithImpl(_$LoginSuccessStateImpl _value,
+      $Res Function(_$LoginSuccessStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of AuthState
@@ -886,14 +889,14 @@ class __$$SuccessStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? response = freezed,
+    Object? response = null,
     Object? userRole = freezed,
   }) {
-    return _then(_$SuccessStateImpl(
-      freezed == response
+    return _then(_$LoginSuccessStateImpl(
+      response: null == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as LoginResponse,
       userRole: freezed == userRole
           ? _value.userRole
           : userRole // ignore: cast_nullable_to_non_nullable
@@ -904,50 +907,52 @@ class __$$SuccessStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessStateImpl implements _SuccessState {
-  const _$SuccessStateImpl(this.response, {this.userRole});
+class _$LoginSuccessStateImpl implements _LoginSuccessState {
+  const _$LoginSuccessStateImpl({required this.response, this.userRole});
 
   @override
-  final dynamic response;
+  final LoginResponse response;
   @override
   final String? userRole;
 
   @override
   String toString() {
-    return 'AuthState.success(response: $response, userRole: $userRole)';
+    return 'AuthState.loginSuccess(response: $response, userRole: $userRole)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SuccessStateImpl &&
-            const DeepCollectionEquality().equals(other.response, response) &&
+            other is _$LoginSuccessStateImpl &&
+            (identical(other.response, response) ||
+                other.response == response) &&
             (identical(other.userRole, userRole) ||
                 other.userRole == userRole));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(response), userRole);
+  int get hashCode => Object.hash(runtimeType, response, userRole);
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SuccessStateImplCopyWith<_$SuccessStateImpl> get copyWith =>
-      __$$SuccessStateImplCopyWithImpl<_$SuccessStateImpl>(this, _$identity);
+  _$$LoginSuccessStateImplCopyWith<_$LoginSuccessStateImpl> get copyWith =>
+      __$$LoginSuccessStateImplCopyWithImpl<_$LoginSuccessStateImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic response, String? userRole) success,
+    required TResult Function(LoginResponse response, String? userRole)
+        loginSuccess,
     required TResult Function(String message) error,
   }) {
-    return success(response, userRole);
+    return loginSuccess(response, userRole);
   }
 
   @override
@@ -955,10 +960,10 @@ class _$SuccessStateImpl implements _SuccessState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic response, String? userRole)? success,
+    TResult? Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(response, userRole);
+    return loginSuccess?.call(response, userRole);
   }
 
   @override
@@ -966,12 +971,12 @@ class _$SuccessStateImpl implements _SuccessState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic response, String? userRole)? success,
+    TResult Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(response, userRole);
+    if (loginSuccess != null) {
+      return loginSuccess(response, userRole);
     }
     return orElse();
   }
@@ -981,10 +986,10 @@ class _$SuccessStateImpl implements _SuccessState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingState value) loading,
-    required TResult Function(_SuccessState value) success,
+    required TResult Function(_LoginSuccessState value) loginSuccess,
     required TResult Function(_ErrorState value) error,
   }) {
-    return success(this);
+    return loginSuccess(this);
   }
 
   @override
@@ -992,10 +997,10 @@ class _$SuccessStateImpl implements _SuccessState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingState value)? loading,
-    TResult? Function(_SuccessState value)? success,
+    TResult? Function(_LoginSuccessState value)? loginSuccess,
     TResult? Function(_ErrorState value)? error,
   }) {
-    return success?.call(this);
+    return loginSuccess?.call(this);
   }
 
   @override
@@ -1003,28 +1008,29 @@ class _$SuccessStateImpl implements _SuccessState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingState value)? loading,
-    TResult Function(_SuccessState value)? success,
+    TResult Function(_LoginSuccessState value)? loginSuccess,
     TResult Function(_ErrorState value)? error,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (loginSuccess != null) {
+      return loginSuccess(this);
     }
     return orElse();
   }
 }
 
-abstract class _SuccessState implements AuthState {
-  const factory _SuccessState(final dynamic response,
-      {final String? userRole}) = _$SuccessStateImpl;
+abstract class _LoginSuccessState implements AuthState {
+  const factory _LoginSuccessState(
+      {required final LoginResponse response,
+      final String? userRole}) = _$LoginSuccessStateImpl;
 
-  dynamic get response;
+  LoginResponse get response;
   String? get userRole;
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SuccessStateImplCopyWith<_$SuccessStateImpl> get copyWith =>
+  _$$LoginSuccessStateImplCopyWith<_$LoginSuccessStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1098,7 +1104,8 @@ class _$ErrorStateImpl implements _ErrorState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(dynamic response, String? userRole) success,
+    required TResult Function(LoginResponse response, String? userRole)
+        loginSuccess,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -1109,7 +1116,7 @@ class _$ErrorStateImpl implements _ErrorState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(dynamic response, String? userRole)? success,
+    TResult? Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -1120,7 +1127,7 @@ class _$ErrorStateImpl implements _ErrorState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(dynamic response, String? userRole)? success,
+    TResult Function(LoginResponse response, String? userRole)? loginSuccess,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -1135,7 +1142,7 @@ class _$ErrorStateImpl implements _ErrorState {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(_LoadingState value) loading,
-    required TResult Function(_SuccessState value) success,
+    required TResult Function(_LoginSuccessState value) loginSuccess,
     required TResult Function(_ErrorState value) error,
   }) {
     return error(this);
@@ -1146,7 +1153,7 @@ class _$ErrorStateImpl implements _ErrorState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(_LoadingState value)? loading,
-    TResult? Function(_SuccessState value)? success,
+    TResult? Function(_LoginSuccessState value)? loginSuccess,
     TResult? Function(_ErrorState value)? error,
   }) {
     return error?.call(this);
@@ -1157,7 +1164,7 @@ class _$ErrorStateImpl implements _ErrorState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(_LoadingState value)? loading,
-    TResult Function(_SuccessState value)? success,
+    TResult Function(_LoginSuccessState value)? loginSuccess,
     TResult Function(_ErrorState value)? error,
     required TResult orElse(),
   }) {

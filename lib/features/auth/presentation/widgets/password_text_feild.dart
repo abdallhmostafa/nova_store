@@ -4,11 +4,12 @@ import 'package:nova_store/core/common/widgets/custom_text_field.dart';
 import 'package:nova_store/core/constants/app_constant.dart';
 import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
-import 'package:nova_store/core/utils/app_regex.dart';
-
 class PasswordTextFeild extends StatefulWidget {
-  const PasswordTextFeild(
-      {super.key, this.isConfirmPassword = false, required this.controller});
+  const PasswordTextFeild({
+    required this.controller,
+    super.key,
+    this.isConfirmPassword = false,
+  });
   final bool isConfirmPassword;
   final TextEditingController controller;
 
@@ -51,9 +52,11 @@ class _PasswordTextFeildState extends State<PasswordTextFeild> {
   String? _passValidate(String? value) {
     if (value!.isEmpty) {
       return 'Please enter your password';
-    } else if (!AppRegex.isPasswordValid(value)) {
-      return 'Please enter a valid password';
-    } else if (value.length < 6) {
+    }
+    //  else if (!AppRegex.isPasswordValid(value)) {
+    //   return 'Please enter a valid password';
+    // }
+    else if (value.length < 6) {
       return 'Password must be at least 6 characters';
     }
     return null;

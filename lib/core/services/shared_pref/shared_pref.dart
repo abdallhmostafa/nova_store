@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPref {
+ class SharedPref {
   factory SharedPref() => _instance;
 
   SharedPref._();
@@ -49,7 +49,7 @@ class SharedPref {
   }
 
   ///Below method is to set the int value in the SharedPreferences.
-  Future<dynamic> setInt(String key, int intValue) async {
+  static Future<dynamic> setInt(String key, int intValue) async {
     await sharedPreferences.setInt(key, intValue);
   }
 

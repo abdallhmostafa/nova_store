@@ -1,5 +1,7 @@
-import 'package:nova_store/core/api/api_result.dart';
-import 'package:nova_store/core/api/error_handler.dart';
+import 'package:nova_store/core/network/apis/api_error_model.dart';
+import 'package:nova_store/core/network/error_handler.dart';
+import 'package:nova_store/core/network/graphql/graphql_error_model.dart';
+import 'package:nova_store/core/network/network_result.dart';
 import 'package:nova_store/features/auth/data/data_source/auth_data_source.dart';
 import 'package:nova_store/features/auth/data/model/login_request.dart';
 import 'package:nova_store/features/auth/data/model/login_response.dart';
@@ -10,35 +12,29 @@ class AuthRepositoryImpl extends AuthRepository {
   AuthRepositoryImpl(this._authDataSource);
   final AuthDataSource _authDataSource;
   @override
-  Future<ApiResult<LoginResponse>> login({
+  Future<NetworkResult<LoginResponse,GraphqlErrorModel>> login({
     required LoginRequest loginRequest,
   }) async {
     try {
       final response = await _authDataSource.login(loginRequest: loginRequest);
-      return ApiResult.success(response);
+      return NetworkResult.success(response);
     } catch (e) {
-      return ApiResult.failure(
-        ErrorHandler.handle(
-          isGraphql: true,
-          error: e,
-        ),
+      return NetworkResult.failure(
+        error: ErrorHandler.handleGraphqlError(error: e),
       );
     }
   }
 
   @override
-  Future<ApiResult<UserRoleResponse>> getUserRole({
+  Future<NetworkResult<UserRoleResponse,ApiErrorModel>> getUserRole({
     required String token,
   }) async {
     try {
       final response = await _authDataSource.getUserRole(token: token);
-      return ApiResult.success(response);
+      return NetworkResult.success(response);
     } catch (e) {
-      return ApiResult.failure(
-        ErrorHandler.handle(
-          isGraphql: false,
-          error: e,
-        ),
+      return NetworkResult.failure(
+        error: ErrorHandler.handleApiError(error: e),
       );
     }
   }
