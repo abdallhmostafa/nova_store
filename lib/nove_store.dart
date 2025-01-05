@@ -6,12 +6,12 @@ import 'package:nova_store/core/common/pages/no_network_page.dart';
 import 'package:nova_store/core/di/dependency_injection.dart';
 import 'package:nova_store/core/lang/app_localizations_setup.dart';
 import 'package:nova_store/core/routes/app_routes.dart';
-import 'package:nova_store/core/routes/routes_name.dart';
 import 'package:nova_store/core/themes/app_theme.dart';
 import 'package:nova_store/core/utils/connectivity_controller.dart';
 
 class NovaStore extends StatelessWidget {
-  const NovaStore({super.key});
+  const NovaStore({super.key, this.initialRoute});
+  final String? initialRoute;
 
   @override
   Widget build(BuildContext context) {
@@ -32,52 +32,57 @@ class NovaStore extends StatelessWidget {
                     current is ChangeLanguageState,
                 builder: (context, state) {
                   final cubit = context.read<AppCubit>();
-                  return MaterialApp(
-                    builder: (context, child) => GestureDetector(
-                      onTap: () {
-                        // FocusScope.of(context).unfocus();
-                        FocusManager.instance.primaryFocus
-                            ?.unfocus(); // to close keyboard from any where
-                      },
-                      child: Scaffold(
-                        body: Builder(
-                          builder: (context) {
-                            ConnectivityController.instance.init();
-                            return child!;
-                          },
-                        ),
-                      ),
-                    ),
-                    title: 'Nova Store',
-                    onGenerateRoute: AppRoutes.onGenerateRoute,
-                    initialRoute: RoutesName.loginPage,
-                    debugShowCheckedModeBanner: false,
-                    theme: AppTheme.lightTheme,
-                    locale: Locale(cubit.currentLanguage),
-                    themeMode:
-                        cubit.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-                    darkTheme: AppTheme.darkTheme,
-                    supportedLocales: AppLocalizationsSetup.supportedLocales,
-                    localeResolutionCallback:
-                        AppLocalizationsSetup.localeResolutionCallback,
-                    localizationsDelegates:
-                        AppLocalizationsSetup.localizationsDelegates,
-                  );
+                  return _materialApp(cubit);
                 },
               ),
             ),
           );
         } else {
-          return MaterialApp(
-            title: 'Nova Store',
-            debugShowCheckedModeBanner: false,
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
-            themeMode: ThemeMode.light,
-            home: const NoNetworkPage(),
-          );
+          return _noInternetMaterialApp();
         }
       },
+    );
+  }
+
+  MaterialApp _materialApp(AppCubit cubit) {
+    return MaterialApp(
+      builder: (context, child) => GestureDetector(
+        onTap: () {
+          // FocusScope.of(context).unfocus();
+          FocusManager.instance.primaryFocus
+              ?.unfocus(); // to close keyboard from any where
+        },
+        child: Scaffold(
+          body: Builder(
+            builder: (context) {
+              ConnectivityController.instance.init();
+              return child!;
+            },
+          ),
+        ),
+      ),
+      title: 'Nova Store',
+      onGenerateRoute: AppRoutes.onGenerateRoute,
+      initialRoute: initialRoute,
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      locale: Locale(cubit.currentLanguage),
+      themeMode: cubit.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+      darkTheme: AppTheme.darkTheme,
+      supportedLocales: AppLocalizationsSetup.supportedLocales,
+      localeResolutionCallback: AppLocalizationsSetup.localeResolutionCallback,
+      localizationsDelegates: AppLocalizationsSetup.localizationsDelegates,
+    );
+  }
+
+  MaterialApp _noInternetMaterialApp() {
+    return MaterialApp(
+      title: 'Nova Store',
+      debugShowCheckedModeBanner: false,
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: ThemeMode.light,
+      home: const NoNetworkPage(),
     );
   }
 }

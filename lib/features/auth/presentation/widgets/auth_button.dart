@@ -12,24 +12,35 @@ class AuthButton extends StatelessWidget {
   const AuthButton({
     required this.onPressed,
     this.isLogin = true,
+    this.isLoading = false,
     super.key,
   });
   final void Function() onPressed;
   final bool isLogin;
+  final bool isLoading;
   @override
   Widget build(BuildContext context) {
     return CustomFadeInUp(
       duration: AppConstant.fadeInDuration,
       child: CustomLinearButton(
         onPressed: onPressed,
-        child: TextApp(
-          text: context.translate(isLogin ? LangKeys.login : LangKeys.signUp),
-          theme: context.textStyle.copyWith(
-            fontSize: 18.sp,
-            fontWeight: FontWieghtHelper.bold,
-            color: Colors.white,
-          ),
-        ),
+        child: isLoading
+            ? CircularProgressIndicator(
+                backgroundColor: Colors.white,
+                semanticsLabel: context.translate(LangKeys.loading),
+                semanticsValue: context.translate(LangKeys.loading),
+                color: context.color.mainColor,
+                strokeWidth: 3,
+              )
+            : TextApp(
+                text: context
+                    .translate(isLogin ? LangKeys.login : LangKeys.signUp),
+                theme: context.textStyle.copyWith(
+                  fontSize: 18.sp,
+                  fontWeight: FontWieghtHelper.bold,
+                  color: Colors.white,
+                ),
+              ),
       ),
     );
   }

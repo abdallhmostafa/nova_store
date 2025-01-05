@@ -5,12 +5,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nova_store/core/app/app_bloc_observer.dart';
 import 'package:nova_store/core/app/env.variables.dart';
 import 'package:nova_store/core/di/dependency_injection.dart';
+import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/services/shared_pref/shared_pref.dart';
 import 'package:nova_store/nove_store.dart';
 
-void main() async {
+Future<void> main() async {
   await setup();
-  runApp(const NovaStore());
+  final initialRoute =
+      await serviceLocator.get<SecureStorageHelper>().initialRoute();
+  runApp(NovaStore(initialRoute: initialRoute));
 }
 
 Future<void> setup() async {

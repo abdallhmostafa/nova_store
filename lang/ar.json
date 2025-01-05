@@ -32,5 +32,6 @@
 "no": "لا",
 "dark_mode": "Dark Mode",
 "lang_code": "العربية",
-"confirm_password": "تأكيد كلمة المرور"
+"confirm_password": "تأكيد كلمة المرور",
+"loading": "جاري التحميل"
 }

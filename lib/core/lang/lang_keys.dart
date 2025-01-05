@@ -33,4 +33,5 @@ abstract class LangKeys {
   static const String darkMode = 'dark_mode';
   static const String langCode = 'lang_code';
   static const String confirmPassword = 'confirm_password';
+  static const String loading = 'loading';
 }

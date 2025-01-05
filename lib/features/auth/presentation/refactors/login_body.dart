@@ -7,10 +7,9 @@ import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
 import 'package:nova_store/core/routes/routes_name.dart';
 import 'package:nova_store/core/styles/fonts/font_wieght_helper.dart';
-import 'package:nova_store/features/auth/presentation/widgets/auth_button.dart';
 import 'package:nova_store/features/auth/presentation/widgets/auth_title_section.dart';
 import 'package:nova_store/features/auth/presentation/widgets/dark_and_lang_section.dart';
-import 'package:nova_store/features/auth/presentation/widgets/login/login_text_form_section.dart';
+import 'package:nova_store/features/auth/presentation/widgets/login/form_and_button_section.dart';
 
 class LoginBody extends StatelessWidget {
   const LoginBody({super.key});
@@ -25,34 +24,35 @@ class LoginBody extends StatelessWidget {
         ),
         child: Column(
           spacing: 30.h,
-          children: [
+          children: [ 
             const DarkAndLangSection(),
             AuthTitleSection(
               title: context.translate(LangKeys.login),
               description: context.translate(LangKeys.welcome),
             ),
-            const LoginTextFormSection(),
-            AuthButton(
-              onPressed: () {},
-            ),
-            CustomFadeInUp(
-              duration: AppConstant.fadeInDuration,
-              child: GestureDetector(
-                onTap: () {
-                  context.pushReplacementNamed(RoutesName.signUpPage);
-                },
-                child: TextApp(
-                  text: context.translate(LangKeys.createAccount),
-                  theme: context.textStyle.copyWith(
-                    fontSize: 16.sp,
-                    fontWeight: FontWieghtHelper.bold,
-                    color: context.color.bluePinkLight,
-                  ),
-                ),
-              ),
-            ),
+            const FormAndButtonSection(),
+            _createAccount(context),
             const SizedBox(),
           ],
+        ),
+      ),
+    );
+  }
+
+  CustomFadeInUp _createAccount(BuildContext context) {
+    return CustomFadeInUp(
+      duration: AppConstant.fadeInDuration,
+      child: GestureDetector(
+        onTap: () {
+          context.pushReplacementNamed(RoutesName.signUpPage);
+        },
+        child: TextApp(
+          text: context.translate(LangKeys.createAccount),
+          theme: context.textStyle.copyWith(
+            fontSize: 16.sp,
+            fontWeight: FontWieghtHelper.bold,
+            color: context.color.bluePinkLight,
+          ),
         ),
       ),
     );
