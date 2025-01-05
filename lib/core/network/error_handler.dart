@@ -4,99 +4,67 @@ import 'package:nova_store/core/network/graphql/graphql_error_model.dart';
 
 class ErrorHandler {
   static GraphqlErrorModel handleGraphqlError({
-    required GraphqlErrorModel graphqlError,
+    required dynamic graphqlError,
   }) {
-    if (graphqlError.errors != null && graphqlError.errors!.isNotEmpty) {
-      for (final error in graphqlError.errors!) {
-        // Handle specific error codes
-        switch (error.extensions?.code) {
-          case 'UNAUTHENTICATED':
-            return GraphqlErrorModel(
-              data: graphqlError.data,
-              errors: graphqlError.errors,
-            );
-          // Redirect to login screen or show error message
+    if (graphqlError is GraphqlErrorModel) {
+      if (graphqlError.errors != null && graphqlError.errors!.isNotEmpty) {
+        for (final error in graphqlError.errors!) {
+          final code = error.extensions?.code;
+          final statusCode = error.extensions?.originalError?.statusCode;
 
-          case 'BAD_USER_INPUT':
-            return GraphqlErrorModel(
-              data: graphqlError.data,
-              errors: graphqlError.errors,
-            );
-          // Highlight incorrect fields in UI
+          // Handle specific GraphQL error codes
+          if (_isKnownGraphqlError(code)) {
+            return _buildGraphqlErrorModel(graphqlError);
+          }
 
-          case 'FORBIDDEN':
-            return GraphqlErrorModel(
-              data: graphqlError.data,
-              errors: graphqlError.errors,
-            );
-          // Show access denied message
-
-          case 'INTERNAL_SERVER_ERROR':
-            return GraphqlErrorModel(
-              data: graphqlError.data,
-              errors: graphqlError.errors,
-            );
-          // Display server error notification
-
-          case 'GRAPHQL_VALIDATION_FAILED':
-            return GraphqlErrorModel(
-              data: graphqlError.data,
-              errors: graphqlError.errors,
-            );
-          // Log validation issues
-
-          default:
-           // Handle HTTP Status Codes (if present)
-            if (error.extensions?.originalError?.statusCode != null) {
-              switch (error.extensions!.originalError!.statusCode) {
-                case 400:
-                        return GraphqlErrorModel(
-                      data: graphqlError.data,
-                      errors: graphqlError.errors,
-                    );
-                case 401:
-                  return GraphqlErrorModel(
-                    data: graphqlError.data,
-                    errors: graphqlError.errors,
-                  );
-                case 403:
-                  return GraphqlErrorModel(
-                    data: graphqlError.data,
-                    errors: graphqlError.errors,
-                  );
-                case 404:
-                  return GraphqlErrorModel(
-                    data: graphqlError.data,
-                    errors: graphqlError.errors,
-                  );
-                case 500:
-                  return GraphqlErrorModel(
-                    data: graphqlError.data,
-                    errors: graphqlError.errors,
-                  );
-                default:
-                  return GraphqlErrorModel(
-                    data: graphqlError.data,
-                    errors: graphqlError.errors,
-                  );
-              }
-            }
-          // Handle unknown errors
+          // Handle HTTP Status Codes if code is not recognized
+          if (_isKnownHttpStatus(statusCode)) {
+            return _buildGraphqlErrorModel(graphqlError);
+          }
         }
-        
-
-      
       }
-    } else {
-      return GraphqlErrorModel(
-        data: graphqlError.data,
-        errors: graphqlError.errors,
+
+      // Default return if no specific error matched
+      return _buildGraphqlErrorModel(graphqlError);
+    }
+
+    if (graphqlError is DioException) {
+      return GraphqlErrorModel.fromJson(
+        graphqlError.response?.data as Map<String, dynamic>? ?? {},
       );
     }
+
+    // Unknown error fallback
     return GraphqlErrorModel(
-        data: graphqlError.data,
-        errors: graphqlError.errors,
-      );
+      errors: [Error(message: null)],
+    );
+  }
+
+  /// Helper method to build a GraphqlErrorModel
+  static GraphqlErrorModel _buildGraphqlErrorModel(
+      GraphqlErrorModel errorModel) {
+    return GraphqlErrorModel(
+      data: errorModel.data,
+      errors: errorModel.errors,
+    );
+  }
+
+  /// Known GraphQL error codes
+  static bool _isKnownGraphqlError(String? code) {
+    const knownGraphqlErrors = {
+      'UNAUTHENTICATED',
+      'BAD_USER_INPUT',
+      'FORBIDDEN',
+      'INTERNAL_SERVER_ERROR',
+      'GRAPHQL_VALIDATION_FAILED',
+    };
+    return knownGraphqlErrors.contains(code);
+  }
+
+  /// Known HTTP status codes
+  static bool _isKnownHttpStatus(int? statusCode) {
+    const knownHttpStatusCodes = {400, 401, 403, 404, 500};
+    return statusCode != null && knownHttpStatusCodes.contains(statusCode);
   }
 
   static ApiErrorModel handleApiError({
@@ -153,6 +121,6 @@ ApiErrorModel _handleError(dynamic error) {
   return ApiErrorModel.fromJson(error as Map<String, dynamic>);
 }
 
-GraphqlErrorModel _graphqlErrorModel(dynamic error) {
-  return GraphqlErrorModel.fromJson(error as Map<String, dynamic>);
-}
+// GraphqlErrorModel _graphqlErrorModel(dynamic error) {
+//   return GraphqlErrorModel.fromJson(error as Map<String, dynamic>);
+// }

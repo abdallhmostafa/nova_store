@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nova_store/core/app/app_cubit/app_cubit.dart';
 import 'package:nova_store/core/graphql/auth/auth_graphql.dart';
+import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/network/api_service.dart';
 import 'package:nova_store/core/network/dio_factory.dart';
 import 'package:nova_store/core/services/shared_pref/shared_pref.dart';
@@ -35,5 +37,8 @@ void setupServiceLocator() {
     )
     ..registerLazySingleton<SharedPreferences>(
       () => SharedPref.sharedPreferences,
+    )
+    ..registerLazySingleton<SecureStorageHelper>(
+      () => SecureStorageHelper(const FlutterSecureStorage()),
     );
 }

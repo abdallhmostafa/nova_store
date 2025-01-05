@@ -1,9 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:nova_store/core/di/dependency_injection.dart';
+import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/services/shared_pref/pref_keys.dart';
-import 'package:nova_store/core/services/shared_pref/shared_pref.dart';
 import 'package:nova_store/features/auth/data/model/login_request.dart';
 import 'package:nova_store/features/auth/data/model/login_response.dart';
 import 'package:nova_store/features/auth/data/repos/auth_repositoryies_impl.dart';
@@ -36,27 +36,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       success: (data) async {
         final token = data.data?.login?.accessToken ?? '';
         final refreshToken = data.data?.login?.refreshToken ?? '';
-        await SharedPref.setString(
-          PrefKeys.accessToken,
-          token,
-        );
-        await SharedPref.setString(
-          PrefKeys.refreshToken,
-          refreshToken,
-        );
-        // final userRole = await _getUserRole(token);
-     
+        await _saveToken(token, refreshToken);
+
+        final userRole = await _getUserRole(token);
+
         emit(
           AuthState.loginSuccess(
             response: data,
-            userRole: '',
+            userRole: userRole,
           ),
         );
       },
       failure: (error) {
         emit(
           AuthState.error(
-            error.errors?.first.extensions?.originalError?.message ?? '',
+            error.errors?.first.message ?? '',
           ),
         );
       },
@@ -67,15 +61,30 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final userRole = await _authRepositoryImpl.getUserRole(token: token);
     return userRole.whenOrNull(
       success: (data) {
-        SharedPref.setInt(
-          PrefKeys.userRole,
-          data.userId ?? 0,
+        serviceLocator<SecureStorageHelper>().save(
+          key: PrefKeys.userRoleId,
+          value: data.userId.toString(),
+        );
+        serviceLocator<SecureStorageHelper>().save(
+          key: PrefKeys.userRole,
+          value: data.userRole!,
         );
         return data.userRole;
       },
       failure: (error) {
         return error.message;
       },
+    );
+  }
+
+  Future<void> _saveToken(String token, String refreshToken) async {
+    await serviceLocator<SecureStorageHelper>().save(
+      key: PrefKeys.accessToken,
+      value: token,
+    );
+    await serviceLocator<SecureStorageHelper>().save(
+      key: PrefKeys.refreshToken,
+      value: refreshToken,
     );
   }
 }

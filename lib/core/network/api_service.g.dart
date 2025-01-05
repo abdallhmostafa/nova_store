@@ -24,13 +24,14 @@ class _ApiService implements ApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<LoginResponse> login(Map<String, dynamic> loginRequest) async {
+  Future<GraphQLResponse<LoginResponse>> login(
+      Map<String, dynamic> loginRequest) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(loginRequest);
-    final _options = _setStreamType<LoginResponse>(Options(
+    final _options = _setStreamType<GraphQLResponse<LoginResponse>>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -47,9 +48,12 @@ class _ApiService implements ApiService {
           baseUrl,
         )));
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late LoginResponse _value;
+    late GraphQLResponse<LoginResponse> _value;
     try {
-      _value = LoginResponse.fromJson(_result.data!);
+      _value = GraphQLResponse<LoginResponse>.fromJson(
+        _result.data!,
+        (json) => LoginResponse.fromJson(json as Map<String, dynamic>),
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

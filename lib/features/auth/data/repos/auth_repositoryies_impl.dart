@@ -12,23 +12,37 @@ class AuthRepositoryImpl extends AuthRepository {
   AuthRepositoryImpl(this._authDataSource);
   final AuthDataSource _authDataSource;
   @override
-  Future<NetworkResult<LoginResponse,GraphqlErrorModel>> login({
+  Future<NetworkResult<LoginResponse, GraphqlErrorModel>> login({
     required LoginRequest loginRequest,
   }) async {
     try {
       final response = await _authDataSource.login(loginRequest: loginRequest);
-      return NetworkResult.success(response);
+
+      if (response.data != null) {
+        return NetworkResult.success(response.data!);
+      } else if (response.errors != null ||
+          response.errors!.errors!.isNotEmpty) {
+        return NetworkResult.failure(
+          error: response.errors!,
+        );
+      } else {
+        return NetworkResult.failure(
+          error: ErrorHandler.handleGraphqlError(
+            graphqlError: response.errors,
+          ),
+        );
+      }
     } catch (e) {
       return NetworkResult.failure(
         error: ErrorHandler.handleGraphqlError(
-          graphqlError: GraphqlErrorModel.fromJson(e as Map<String, dynamic>),
+          graphqlError: e,
         ),
       );
     }
   }
 
   @override
-  Future<NetworkResult<UserRoleResponse,ApiErrorModel>> getUserRole({
+  Future<NetworkResult<UserRoleResponse, ApiErrorModel>> getUserRole({
     required String token,
   }) async {
     try {

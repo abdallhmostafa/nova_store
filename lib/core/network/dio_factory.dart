@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:nova_store/core/di/dependency_injection.dart';
+import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/services/shared_pref/pref_keys.dart';
-import 'package:nova_store/core/services/shared_pref/shared_pref.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
@@ -17,18 +18,19 @@ class DioFactory {
       ..options.headers = {
         'Content-Type': 'application/json',
         // 'Accept': '*/*',
-        'Authorization': 'Bearer ${SharedPref.getString(PrefKeys.accessToken)}',
+        'Authorization':
+            'Bearer ${serviceLocator.get<SecureStorageHelper>().read(key: PrefKeys.accessToken)}',
       };
 
     debugPrint(
-      "[USER Token] ====> ${SharedPref.getString(PrefKeys.accessToken) ?? 'NULL TOKEN'}",
+      "[USER Token] ====> ${serviceLocator.get<SecureStorageHelper>().read(key: PrefKeys.accessToken)}",
     );
 
-    addDioInterceptor();
+    _addDioInterceptor();
     return dio;
   }
 
-  void addDioInterceptor() {
+  void _addDioInterceptor() {
     dio.interceptors.add(
       PrettyDioLogger(
         compact: false,
@@ -39,49 +41,3 @@ class DioFactory {
     );
   }
 }
-
-// abstract class DioFactory {
-//   DioFactory._();
-
-//   static Dio? dio;
-
-//   static Dio getDio() {
-//     const timeOut = Duration(seconds: 15);
-
-//     if (dio == null) {
-//       dio = Dio();
-//       dio!
-//         ..options.connectTimeout = timeOut
-//         ..options.receiveTimeout = timeOut
-
-//         ..options.headers = {
-//           'Content-Type': 'application/json',
-//           // 'Accept': '*/*',
-//           'Authorization':
-//               'Bearer ${SharedPref.getString(PrefKeys.accessToken)}',
-//         };
-
-//       debugPrint(
-//         "[USER Token] ====> ${SharedPref.getString(PrefKeys.accessToken) ?? 'NULL TOKEN'}",
-//       );
-
-//       addDioInterceptor();
-//       return dio!;
-//     } else {
-//       return dio!;
-//     }
-//   }
-
-//   static void addDioInterceptor() {
-//     dio?.interceptors.add(
-//       PrettyDioLogger(
-//           request: true,
-//           compact: false,
-//           requestHeader: true,
-//           responseHeader: true,
-//           requestBody: true,
-
-//           ),
-//     );
-//   }
-// }

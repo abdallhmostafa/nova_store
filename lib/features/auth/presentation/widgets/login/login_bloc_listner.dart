@@ -40,7 +40,9 @@ class LoginBlocListner extends StatelessWidget {
           error: (error) {
             ShowToast.showToastErrorTop(
               context: context,
-              message: error,
+              message: error.isEmpty
+                  ? context.translate(LangKeys.loggedError)
+                  : error,
             );
           },
         );
