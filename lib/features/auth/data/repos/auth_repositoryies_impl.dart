@@ -18,6 +18,7 @@ class AuthRepositoryImpl extends AuthRepository {
     try {
       final response = await _authDataSource.login(loginRequest: loginRequest);
 
+
       if (response.data != null) {
         return NetworkResult.success(response.data!);
       } else if (response.errors != null ||
