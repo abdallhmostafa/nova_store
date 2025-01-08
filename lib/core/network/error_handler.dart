@@ -88,9 +88,18 @@ class ErrorHandler {
             statusCode: 408,
           );
         case DioExceptionType.badResponse:
-          return _handleError(error);
+          return _handleError(error.response!.data);
+
         case DioExceptionType.unknown:
-          return _handleError(error);
+          if (error.response != null &&
+              error.response?.statusCode != null &&
+              error.response?.statusMessage != null) {
+            return ApiErrorModel.fromJson(
+                error.response!.data as Map<String, dynamic>);
+          } else {
+            return ApiErrorModel(
+                message: error.message ?? 'Unknown Error', statusCode: 500);
+          }
         case DioExceptionType.cancel:
           return ApiErrorModel(
             message: error.message ?? 'Request Cancelled',
@@ -118,7 +127,10 @@ class ErrorHandler {
 }
 
 ApiErrorModel _handleError(dynamic error) {
-  return ApiErrorModel.fromJson(error as Map<String, dynamic>);
+  return ApiErrorModel(
+    message: error['message'] as String?,
+    statusCode: error['statusCode'] as int?,
+  );
 }
 
 // GraphqlErrorModel _graphqlErrorModel(dynamic error) {

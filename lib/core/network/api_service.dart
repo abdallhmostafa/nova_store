@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:nova_store/core/network/graphql/graphql_response.dart';
 import 'package:nova_store/features/auth/data/model/login_response.dart';
 import 'package:nova_store/features/auth/data/model/user_role_response.dart';
 import 'package:retrofit/retrofit.dart';
@@ -16,7 +15,7 @@ abstract class ApiService {
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
 
   @POST(_graphql)
-  Future<GraphQLResponse<LoginResponse>> login(
+  Future<LoginResponse> login(
       @Body() Map<String, dynamic> loginRequest);
 
   @GET(_api + _userRole)

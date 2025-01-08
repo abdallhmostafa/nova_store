@@ -17,22 +17,15 @@ class AuthRepositoryImpl extends AuthRepository {
   }) async {
     try {
       final response = await _authDataSource.login(loginRequest: loginRequest);
-
-
-      if (response.data != null) {
-        return NetworkResult.success(response.data!);
-      } else if (response.errors != null ||
-          response.errors!.errors!.isNotEmpty) {
-        return NetworkResult.failure(
-          error: response.errors!,
-        );
-      } else {
+      if (response.data == null || response.data?.login == null) {
         return NetworkResult.failure(
           error: ErrorHandler.handleGraphqlError(
-            graphqlError: response.errors,
+            graphqlError: 'Oops, something went wrong',
           ),
         );
       }
+
+      return NetworkResult.success(response);
     } catch (e) {
       return NetworkResult.failure(
         error: ErrorHandler.handleGraphqlError(

@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -36,8 +39,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       success: (data) async {
         final token = data.data?.login?.accessToken ?? '';
         final refreshToken = data.data?.login?.refreshToken ?? '';
-        await _saveToken(token, refreshToken);
-
+        unawaited(_saveToken(token, refreshToken));
+        log('token: $token');
         final userRole = await _getUserRole(token);
 
         emit(
@@ -72,6 +75,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         return data.userRole;
       },
       failure: (error) {
+        log('error: ${error.message}');
         return error.message;
       },
     );
