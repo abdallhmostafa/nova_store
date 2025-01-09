@@ -6,6 +6,7 @@ import 'package:nova_store/core/common/pages/no_network_page.dart';
 import 'package:nova_store/core/di/dependency_injection.dart';
 import 'package:nova_store/core/lang/app_localizations_setup.dart';
 import 'package:nova_store/core/routes/app_routes.dart';
+import 'package:nova_store/core/routes/routes_name.dart';
 import 'package:nova_store/core/themes/app_theme.dart';
 import 'package:nova_store/core/utils/connectivity_controller.dart';
 
@@ -62,8 +63,10 @@ class NovaStore extends StatelessWidget {
         ),
       ),
       title: 'Nova Store',
+      navigatorKey: serviceLocator<GlobalKey<NavigatorState>>(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
-      initialRoute: initialRoute,
+      // initialRoute: initialRoute,
+      initialRoute: RoutesName.signUpPage,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       locale: Locale(cubit.currentLanguage),

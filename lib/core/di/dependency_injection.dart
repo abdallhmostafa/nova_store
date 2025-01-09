@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nova_store/core/app/app_cubit/app_cubit.dart';
@@ -15,6 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 final GetIt serviceLocator = GetIt.instance;
 
 void setupServiceLocator() {
+  final navigatorKey = GlobalKey<NavigatorState>();
   serviceLocator
     ..registerFactory(AppCubit.new)
     ..registerLazySingleton(AuthGraphql.new)
@@ -40,5 +42,8 @@ void setupServiceLocator() {
     )
     ..registerLazySingleton<SecureStorageHelper>(
       () => SecureStorageHelper(const FlutterSecureStorage()),
+    )
+    ..registerSingleton<GlobalKey<NavigatorState>>(
+      navigatorKey,
     );
 }
