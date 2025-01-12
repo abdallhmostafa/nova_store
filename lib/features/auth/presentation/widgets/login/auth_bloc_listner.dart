@@ -6,8 +6,8 @@ import 'package:nova_store/core/routes/routes_name.dart';
 import 'package:nova_store/core/utils/show_toast.dart';
 import 'package:nova_store/features/auth/presentation/bloc/auth_bloc.dart';
 
-class LoginBlocListner extends StatelessWidget {
-  const LoginBlocListner({super.key});
+class AuthBlocListner extends StatelessWidget {
+  const AuthBlocListner({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,11 +28,24 @@ class LoginBlocListner extends StatelessWidget {
                 RoutesName.clientHomePage,
                 (route) => false,
               );
-            } else {
+            } else if (userRole == null || userRole.isEmpty) {
               ShowToast.showToastError(
                 message: 'user role not found',
               );
             }
+          },
+          signUpSuccess: (response) {
+            ShowToast.showToastSuccess(
+              message: context.translate(LangKeys.signUpSuccessfully),
+            );
+            // Future.delayed(const Duration(seconds: 3), () {
+            //   ShowToast.showToastSuccess(
+            //     seconds: 4,
+            //     message: context.translate(
+            //       LangKeys.loginToAccount,
+            //     ),
+            //   );
+            // });
           },
           orElse: () {},
           error: (error) {

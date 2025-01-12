@@ -35,5 +35,9 @@
     "confirm_password": "Confirm Password",
     "loading": "Loading",
     "uploading_the_image": "Uploading the image...",
-    "upload_image_error": "There was an error uploading the image, try again"
+    "upload_image_error": "There was an error uploading the image, try again",
+    "sign_up_successfully": "Sign up successfully",
+    "sign_up_error": "There was an error signing up, try again",
+    "login_to_account": "Logging to your account...",
+    "select_image": "Please, select an image"
 }

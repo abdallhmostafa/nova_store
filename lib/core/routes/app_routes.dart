@@ -16,6 +16,8 @@ class AppRoutes {
   AppRoutes._();
   static final AppRoutes instance = AppRoutes._();
 
+  static var signUpPage;
+
   static Route<void> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.homePage:
@@ -32,6 +34,9 @@ class AppRoutes {
           providers: [
             BlocProvider(
               create: (context) => serviceLocator<UploadImageCubit>(),
+            ),
+            BlocProvider(
+              create: (context) => serviceLocator<AuthBloc>(),
             ),
           ],
           child: const SignUpPage(),

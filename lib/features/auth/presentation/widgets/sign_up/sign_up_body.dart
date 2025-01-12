@@ -7,11 +7,11 @@ import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
 import 'package:nova_store/core/routes/routes_name.dart';
 import 'package:nova_store/core/styles/fonts/font_wieght_helper.dart';
-import 'package:nova_store/features/auth/presentation/widgets/auth_button.dart';
 import 'package:nova_store/features/auth/presentation/widgets/auth_title_section.dart';
 import 'package:nova_store/features/auth/presentation/widgets/dark_and_lang_section.dart';
 import 'package:nova_store/features/auth/presentation/widgets/sign_up/sign_text_form_section.dart';
 import 'package:nova_store/features/auth/presentation/widgets/sign_up/sign_up_avatar_image.dart';
+import 'package:nova_store/features/auth/presentation/widgets/sign_up/sign_up_button_and_bloc_listener.dart';
 
 class SignUpBody extends StatelessWidget {
   const SignUpBody({super.key});
@@ -34,10 +34,7 @@ class SignUpBody extends StatelessWidget {
             ),
             const SignUpAvatarImage(),
             const SignTextFormSection(),
-            AuthButton(
-              isLogin: false,
-              onPressed: () {},
-            ),
+            const SignUpButtonAndBlocListener(),
             CustomFadeInUp(
               duration: AppConstant.fadeInDuration,
               child: GestureDetector(

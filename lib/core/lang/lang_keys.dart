@@ -36,4 +36,8 @@ abstract class LangKeys {
   static const String langCode = 'lang_code';
   static const String confirmPassword = 'confirm_password';
   static const String loading = 'loading';
+  static const String signUpSuccessfully = 'sign_up_successfully';
+  static const String signUpError = 'sign_up_error';
+  static const String loginToAccount = 'login_to_account';
+  static const String selectImage = 'select_image';
 }

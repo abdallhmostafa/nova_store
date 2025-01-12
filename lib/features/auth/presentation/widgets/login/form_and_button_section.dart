@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:nova_store/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:nova_store/features/auth/presentation/widgets/auth_button.dart';
-import 'package:nova_store/features/auth/presentation/widgets/login/login_bloc_listner.dart';
+import 'package:nova_store/features/auth/presentation/widgets/login/auth_bloc_listner.dart';
 import 'package:nova_store/features/auth/presentation/widgets/login/login_text_form_section.dart';
 
 class FormAndButtonSection extends StatelessWidget {
@@ -33,7 +33,7 @@ class FormAndButtonSection extends StatelessWidget {
             );
           },
         ),
-        const LoginBlocListner(),
+        const AuthBlocListner(),
       ],
     );
   }

@@ -29,6 +29,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   Future<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
@@ -44,7 +46,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         final token = data.data?.login?.accessToken ?? '';
         final refreshToken = data.data?.login?.refreshToken ?? '';
         unawaited(_saveToken(token, refreshToken));
-        log('token: $token');
         final userRole = await _getUserRole(token);
 
         emit(
@@ -62,6 +63,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         );
       },
     );
+  }
+
+  bool checkConfirmPassword() {
+    return passwordController.text == confirmPasswordController.text;
   }
 
   Future<String?> _getUserRole(String token) async {
@@ -122,5 +127,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         emit(AuthState.error(error.errors?.first.message ?? ''));
       },
     );
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    confirmPasswordController.dispose();
+
+    return super.close();
   }
 }
