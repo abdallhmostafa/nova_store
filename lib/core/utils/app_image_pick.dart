@@ -7,9 +7,15 @@ class AppImagePick {
   factory AppImagePick() => instance;
   AppImagePick._();
   static final AppImagePick instance = AppImagePick._();
-  static Future<XFile?> pickImage() async {
+  static Future<XFile?> pickImage({double maxImageSize = 1024}) async {
     try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      final image = await ImagePicker().pickImage(
+        source: ImageSource.gallery,
+        maxHeight: maxImageSize,
+        maxWidth: maxImageSize,
+        imageQuality: 50,
+        requestFullMetadata: false,
+      );
       if (image == null) {
         return null;
       }

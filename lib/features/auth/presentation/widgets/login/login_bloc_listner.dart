@@ -15,7 +15,7 @@ class LoginBlocListner extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
           loginSuccess: (response, userRole) {
-            ShowToast.showToastSuccessTop(
+            ShowToast.showToastSuccess(
               message: context.translate(LangKeys.loggedSuccessfully),
             );
             if (userRole == 'admin') {
@@ -29,14 +29,14 @@ class LoginBlocListner extends StatelessWidget {
                 (route) => false,
               );
             } else {
-              ShowToast.showToastErrorTop(
+              ShowToast.showToastError(
                 message: 'user role not found',
               );
             }
           },
           orElse: () {},
           error: (error) {
-            ShowToast.showToastErrorTop(
+            ShowToast.showToastError(
               message: error.isEmpty
                   ? context.translate(LangKeys.loggedError)
                   : error,

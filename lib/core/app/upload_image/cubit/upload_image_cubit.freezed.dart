@@ -21,6 +21,7 @@ mixin _$UploadImageState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UploadImageResponseModel response) success,
+    required TResult Function(String url) remove,
     required TResult Function(ApiErrorModel error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -29,6 +30,7 @@ mixin _$UploadImageState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UploadImageResponseModel response)? success,
+    TResult? Function(String url)? remove,
     TResult? Function(ApiErrorModel error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -37,6 +39,7 @@ mixin _$UploadImageState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UploadImageResponseModel response)? success,
+    TResult Function(String url)? remove,
     TResult Function(ApiErrorModel error)? error,
     required TResult orElse(),
   }) =>
@@ -44,25 +47,28 @@ mixin _$UploadImageState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Remove value) remove,
+    required TResult Function(Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Remove value)? remove,
+    TResult? Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Remove value)? remove,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,6 +139,7 @@ class _$InitialImpl implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UploadImageResponseModel response) success,
+    required TResult Function(String url) remove,
     required TResult Function(ApiErrorModel error) error,
   }) {
     return initial();
@@ -144,6 +151,7 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UploadImageResponseModel response)? success,
+    TResult? Function(String url)? remove,
     TResult? Function(ApiErrorModel error)? error,
   }) {
     return initial?.call();
@@ -155,6 +163,7 @@ class _$InitialImpl implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UploadImageResponseModel response)? success,
+    TResult Function(String url)? remove,
     TResult Function(ApiErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -168,9 +177,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Remove value) remove,
+    required TResult Function(Error value) error,
   }) {
     return initial(this);
   }
@@ -179,9 +189,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Remove value)? remove,
+    TResult? Function(Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -190,9 +201,10 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Remove value)? remove,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -227,7 +239,7 @@ class __$$LoadingImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
+class _$LoadingImpl implements Loading {
   const _$LoadingImpl();
 
   @override
@@ -250,6 +262,7 @@ class _$LoadingImpl implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UploadImageResponseModel response) success,
+    required TResult Function(String url) remove,
     required TResult Function(ApiErrorModel error) error,
   }) {
     return loading();
@@ -261,6 +274,7 @@ class _$LoadingImpl implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UploadImageResponseModel response)? success,
+    TResult? Function(String url)? remove,
     TResult? Function(ApiErrorModel error)? error,
   }) {
     return loading?.call();
@@ -272,6 +286,7 @@ class _$LoadingImpl implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UploadImageResponseModel response)? success,
+    TResult Function(String url)? remove,
     TResult Function(ApiErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -285,9 +300,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Remove value) remove,
+    required TResult Function(Error value) error,
   }) {
     return loading(this);
   }
@@ -296,9 +312,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Remove value)? remove,
+    TResult? Function(Error value)? error,
   }) {
     return loading?.call(this);
   }
@@ -307,9 +324,10 @@ class _$LoadingImpl implements _Loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Remove value)? remove,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -319,8 +337,8 @@ class _$LoadingImpl implements _Loading {
   }
 }
 
-abstract class _Loading implements UploadImageState {
-  const factory _Loading() = _$LoadingImpl;
+abstract class Loading implements UploadImageState {
+  const factory Loading() = _$LoadingImpl;
 }
 
 /// @nodoc
@@ -358,7 +376,7 @@ class __$$SuccessImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SuccessImpl implements _Success {
+class _$SuccessImpl implements Success {
   const _$SuccessImpl({required this.response});
 
   @override
@@ -395,6 +413,7 @@ class _$SuccessImpl implements _Success {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UploadImageResponseModel response) success,
+    required TResult Function(String url) remove,
     required TResult Function(ApiErrorModel error) error,
   }) {
     return success(response);
@@ -406,6 +425,7 @@ class _$SuccessImpl implements _Success {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UploadImageResponseModel response)? success,
+    TResult? Function(String url)? remove,
     TResult? Function(ApiErrorModel error)? error,
   }) {
     return success?.call(response);
@@ -417,6 +437,7 @@ class _$SuccessImpl implements _Success {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UploadImageResponseModel response)? success,
+    TResult Function(String url)? remove,
     TResult Function(ApiErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -430,9 +451,10 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Remove value) remove,
+    required TResult Function(Error value) error,
   }) {
     return success(this);
   }
@@ -441,9 +463,10 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Remove value)? remove,
+    TResult? Function(Error value)? error,
   }) {
     return success?.call(this);
   }
@@ -452,9 +475,10 @@ class _$SuccessImpl implements _Success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Remove value)? remove,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -464,8 +488,8 @@ class _$SuccessImpl implements _Success {
   }
 }
 
-abstract class _Success implements UploadImageState {
-  const factory _Success({required final UploadImageResponseModel response}) =
+abstract class Success implements UploadImageState {
+  const factory Success({required final UploadImageResponseModel response}) =
       _$SuccessImpl;
 
   UploadImageResponseModel get response;
@@ -474,6 +498,164 @@ abstract class _Success implements UploadImageState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$RemoveImplCopyWith<$Res> {
+  factory _$$RemoveImplCopyWith(
+          _$RemoveImpl value, $Res Function(_$RemoveImpl) then) =
+      __$$RemoveImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String url});
+}
+
+/// @nodoc
+class __$$RemoveImplCopyWithImpl<$Res>
+    extends _$UploadImageStateCopyWithImpl<$Res, _$RemoveImpl>
+    implements _$$RemoveImplCopyWith<$Res> {
+  __$$RemoveImplCopyWithImpl(
+      _$RemoveImpl _value, $Res Function(_$RemoveImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? url = null,
+  }) {
+    return _then(_$RemoveImpl(
+      url: null == url
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$RemoveImpl implements Remove {
+  const _$RemoveImpl({required this.url});
+
+  @override
+  final String url;
+
+  @override
+  String toString() {
+    return 'UploadImageState.remove(url: $url)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RemoveImpl &&
+            (identical(other.url, url) || other.url == url));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, url);
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RemoveImplCopyWith<_$RemoveImpl> get copyWith =>
+      __$$RemoveImplCopyWithImpl<_$RemoveImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UploadImageResponseModel response) success,
+    required TResult Function(String url) remove,
+    required TResult Function(ApiErrorModel error) error,
+  }) {
+    return remove(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UploadImageResponseModel response)? success,
+    TResult? Function(String url)? remove,
+    TResult? Function(ApiErrorModel error)? error,
+  }) {
+    return remove?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UploadImageResponseModel response)? success,
+    TResult Function(String url)? remove,
+    TResult Function(ApiErrorModel error)? error,
+    required TResult orElse(),
+  }) {
+    if (remove != null) {
+      return remove(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Remove value) remove,
+    required TResult Function(Error value) error,
+  }) {
+    return remove(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Remove value)? remove,
+    TResult? Function(Error value)? error,
+  }) {
+    return remove?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Remove value)? remove,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (remove != null) {
+      return remove(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Remove implements UploadImageState {
+  const factory Remove({required final String url}) = _$RemoveImpl;
+
+  String get url;
+
+  /// Create a copy of UploadImageState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$RemoveImplCopyWith<_$RemoveImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -512,7 +694,7 @@ class __$$ErrorImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
+class _$ErrorImpl implements Error {
   const _$ErrorImpl({required this.error});
 
   @override
@@ -548,6 +730,7 @@ class _$ErrorImpl implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(UploadImageResponseModel response) success,
+    required TResult Function(String url) remove,
     required TResult Function(ApiErrorModel error) error,
   }) {
     return error(this.error);
@@ -559,6 +742,7 @@ class _$ErrorImpl implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(UploadImageResponseModel response)? success,
+    TResult? Function(String url)? remove,
     TResult? Function(ApiErrorModel error)? error,
   }) {
     return error?.call(this.error);
@@ -570,6 +754,7 @@ class _$ErrorImpl implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(UploadImageResponseModel response)? success,
+    TResult Function(String url)? remove,
     TResult Function(ApiErrorModel error)? error,
     required TResult orElse(),
   }) {
@@ -583,9 +768,10 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Remove value) remove,
+    required TResult Function(Error value) error,
   }) {
     return error(this);
   }
@@ -594,9 +780,10 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Remove value)? remove,
+    TResult? Function(Error value)? error,
   }) {
     return error?.call(this);
   }
@@ -605,9 +792,10 @@ class _$ErrorImpl implements _Error {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Remove value)? remove,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -617,8 +805,8 @@ class _$ErrorImpl implements _Error {
   }
 }
 
-abstract class _Error implements UploadImageState {
-  const factory _Error({required final ApiErrorModel error}) = _$ErrorImpl;
+abstract class Error implements UploadImageState {
+  const factory Error({required final ApiErrorModel error}) = _$ErrorImpl;
 
   ApiErrorModel get error;
 

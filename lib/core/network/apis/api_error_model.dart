@@ -1,4 +1,3 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'api_error_model.g.dart';
@@ -6,8 +5,8 @@ part 'api_error_model.g.dart';
 @JsonSerializable()
 class ApiErrorModel {
   ApiErrorModel({
-    required this.message,
-    required this.statusCode,
+    this.message,
+    this.statusCode,
   });
 
   factory ApiErrorModel.fromJson(Map<String, dynamic> json) =>

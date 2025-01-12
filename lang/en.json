@@ -33,5 +33,7 @@
     "dark_mode": "Dark Mode",
     "lang_code": "English",
     "confirm_password": "Confirm Password",
-    "loading": "Loading"
+    "loading": "Loading",
+    "uploading_the_image": "Uploading the image...",
+    "upload_image_error": "There was an error uploading the image, try again"
 }
