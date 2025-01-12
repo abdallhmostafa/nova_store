@@ -1,4 +1,5 @@
-import 'package:nova_store/features/auth/data/model/login_request.dart';
+import 'package:nova_store/features/auth/data/model/login/login_request.dart';
+import 'package:nova_store/features/auth/data/model/sign_up/sign_up_request_model.dart';
 
 class AuthGraphql {
   factory AuthGraphql() => _instance;
@@ -18,6 +19,35 @@ class AuthGraphql {
       'variables': {
         'email': loginRequest.email,
         'password': loginRequest.password,
+      },
+    };
+  }
+
+  Map<String, dynamic> signUpGraphql({
+    required SignUpRequestModel signUpRequest,
+  }) {
+    return {
+      'query': r'''
+   mutation SignUp($email: String!, $password: String!, $name: String!, $avatar: String!) {
+	addUser(
+		data: {
+			name: $name
+			email: $email
+			password: $password
+			avatar: $avatar
+		}
+	) {
+		id
+		name
+		avatar
+	}
+}
+      ''',
+      'variables': {
+        'email': signUpRequest.email,
+        'password': signUpRequest.password,
+        'name': signUpRequest.name,
+        'avatar': signUpRequest.avatar,
       },
     };
   }

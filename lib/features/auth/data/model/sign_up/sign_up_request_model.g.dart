@@ -1,14 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'login_request.dart';
+part of 'sign_up_request_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-
-Map<String, dynamic> _$LoginRequestToJson(LoginRequest instance) =>
+Map<String, dynamic> _$SignUpRequestModelToJson(SignUpRequestModel instance) =>
     <String, dynamic>{
+      'name': instance.name,
       'email': instance.email,
       'password': instance.password,
+      'avatar': instance.avatar,
     };

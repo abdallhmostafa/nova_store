@@ -58,6 +58,40 @@ class _ApiService implements ApiService {
   }
 
   @override
+  Future<SignUpResponseModel> signUp(Map<String, dynamic> signUpRequest) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(signUpRequest);
+    final _options = _setStreamType<SignUpResponseModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+        .compose(
+          _dio.options,
+          '/graphql',
+          queryParameters: queryParameters,
+          data: _data,
+        )
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        )));
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late SignUpResponseModel _value;
+    try {
+      _value = SignUpResponseModel.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<UserRoleResponse> getUserRole() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

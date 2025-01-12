@@ -7,8 +7,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nova_store/core/di/dependency_injection.dart';
 import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/services/shared_pref/pref_keys.dart';
-import 'package:nova_store/features/auth/data/model/login_request.dart';
-import 'package:nova_store/features/auth/data/model/login_response.dart';
+import 'package:nova_store/features/auth/data/model/login/login_request.dart';
+import 'package:nova_store/features/auth/data/model/login/login_response.dart';
 import 'package:nova_store/features/auth/data/repos/auth_repositoryies_impl.dart';
 
 part 'auth_bloc.freezed.dart';

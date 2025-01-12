@@ -3,9 +3,11 @@ import 'package:nova_store/core/network/error_handler.dart';
 import 'package:nova_store/core/network/graphql/graphql_error_model.dart';
 import 'package:nova_store/core/network/network_result.dart';
 import 'package:nova_store/features/auth/data/data_source/auth_data_source.dart';
-import 'package:nova_store/features/auth/data/model/login_request.dart';
-import 'package:nova_store/features/auth/data/model/login_response.dart';
-import 'package:nova_store/features/auth/data/model/user_role_response.dart';
+import 'package:nova_store/features/auth/data/model/login/login_request.dart';
+import 'package:nova_store/features/auth/data/model/login/login_response.dart';
+import 'package:nova_store/features/auth/data/model/sign_up/sign_up_request_model.dart';
+import 'package:nova_store/features/auth/data/model/sign_up/sign_up_response_model.dart';
+import 'package:nova_store/features/auth/data/model/user_role/user_role_response.dart';
 import 'package:nova_store/features/auth/data/repos/aurh_repository.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
@@ -45,6 +47,30 @@ class AuthRepositoryImpl extends AuthRepository {
     } catch (e) {
       return NetworkResult.failure(
         error: ErrorHandler.handleApiError(error: e),
+      );
+    }
+  }
+
+  @override
+  Future<NetworkResult<SignUpResponseModel, GraphqlErrorModel>> signUp(
+      {required SignUpRequestModel signUpRequest}) async {
+    try {
+      final response =
+          await _authDataSource.signUp(signUpRequest: signUpRequest);
+      if (response.data == null || response.data?.addUser == null) {
+        return NetworkResult.failure(
+          error: ErrorHandler.handleGraphqlError(
+            graphqlError: 'Oops, something went wrong',
+          ),
+        );
+      }
+
+      return NetworkResult.success(response);
+    } catch (e) {
+      return NetworkResult.failure(
+        error: ErrorHandler.handleGraphqlError(
+          graphqlError: e,
+        ),
       );
     }
   }

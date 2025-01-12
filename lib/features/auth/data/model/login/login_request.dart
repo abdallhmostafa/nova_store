@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'login_request.g.dart';
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class LoginRequest {
 
   LoginRequest({
