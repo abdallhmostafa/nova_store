@@ -9,6 +9,8 @@ import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/services/shared_pref/pref_keys.dart';
 import 'package:nova_store/features/auth/data/model/login/login_request.dart';
 import 'package:nova_store/features/auth/data/model/login/login_response.dart';
+import 'package:nova_store/features/auth/data/model/sign_up/sign_up_request_model.dart';
+import 'package:nova_store/features/auth/data/model/sign_up/sign_up_response_model.dart';
 import 'package:nova_store/features/auth/data/repos/auth_repositoryies_impl.dart';
 
 part 'auth_bloc.freezed.dart';
@@ -20,11 +22,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       : _authRepositoryImpl = authRepositoryImpl,
         super(const AuthState.initial()) {
     on<LoginEvent>(_login);
+    on<SignUpEvent>(_signUp);
   }
   final AuthRepositoryImpl _authRepositoryImpl;
   final TextEditingController emailController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
 
   Future<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
@@ -89,6 +93,34 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     await serviceLocator<SecureStorageHelper>().save(
       key: PrefKeys.refreshToken,
       value: refreshToken,
+    );
+  }
+
+  Future<void> _signUp(SignUpEvent event, Emitter<AuthState> emit) async {
+    emit(const AuthState.loading());
+    final response = await _authRepositoryImpl.signUp(
+      signUpRequest: SignUpRequestModel(
+        avatar: event.imageUrl,
+        email: emailController.text.trim(),
+        password: passwordController.text,
+        name: nameController.text.trim(),
+      ),
+    );
+
+    response.when(
+      success: (data) {
+        add(
+          const AuthEvent.login(),
+        );
+        emit(
+          AuthState.signUpSuccess(
+            response: data,
+          ),
+        );
+      },
+      failure: (error) {
+        emit(AuthState.error(error.errors?.first.message ?? ''));
+      },
     );
   }
 }
