@@ -1,11 +1,16 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nova_store/core/di/dependency_injection.dart';
 import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/services/shared_pref/pref_keys.dart';
-import 'package:nova_store/features/auth/data/model/login_request.dart';
-import 'package:nova_store/features/auth/data/model/login_response.dart';
+import 'package:nova_store/features/auth/data/model/login/login_request.dart';
+import 'package:nova_store/features/auth/data/model/login/login_response.dart';
+import 'package:nova_store/features/auth/data/model/sign_up/sign_up_request_model.dart';
+import 'package:nova_store/features/auth/data/model/sign_up/sign_up_response_model.dart';
 import 'package:nova_store/features/auth/data/repos/auth_repositoryies_impl.dart';
 
 part 'auth_bloc.freezed.dart';
@@ -17,11 +22,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       : _authRepositoryImpl = authRepositoryImpl,
         super(const AuthState.initial()) {
     on<LoginEvent>(_login);
+    on<SignUpEvent>(_signUp);
   }
   final AuthRepositoryImpl _authRepositoryImpl;
   final TextEditingController emailController = TextEditingController();
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   Future<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
@@ -36,8 +45,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       success: (data) async {
         final token = data.data?.login?.accessToken ?? '';
         final refreshToken = data.data?.login?.refreshToken ?? '';
-        await _saveToken(token, refreshToken);
-
+        unawaited(_saveToken(token, refreshToken));
         final userRole = await _getUserRole(token);
 
         emit(
@@ -57,6 +65,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
+  bool checkConfirmPassword() {
+    return passwordController.text == confirmPasswordController.text;
+  }
+
   Future<String?> _getUserRole(String token) async {
     final userRole = await _authRepositoryImpl.getUserRole(token: token);
     return userRole.whenOrNull(
@@ -72,6 +84,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         return data.userRole;
       },
       failure: (error) {
+        log('error: ${error.message}');
         return error.message;
       },
     );
@@ -86,5 +99,43 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       key: PrefKeys.refreshToken,
       value: refreshToken,
     );
+  }
+
+  Future<void> _signUp(SignUpEvent event, Emitter<AuthState> emit) async {
+    emit(const AuthState.loading());
+    final response = await _authRepositoryImpl.signUp(
+      signUpRequest: SignUpRequestModel(
+        avatar: event.imageUrl,
+        email: emailController.text.trim(),
+        password: passwordController.text,
+        name: nameController.text.trim(),
+      ),
+    );
+
+    response.when(
+      success: (data) {
+        add(
+          const AuthEvent.login(),
+        );
+        emit(
+          AuthState.signUpSuccess(
+            response: data,
+          ),
+        );
+      },
+      failure: (error) {
+        emit(AuthState.error(error.errors?.first.message ?? ''));
+      },
+    );
+  }
+
+  @override
+  Future<void> close() {
+    emailController.dispose();
+    passwordController.dispose();
+    nameController.dispose();
+    confirmPasswordController.dispose();
+
+    return super.close();
   }
 }

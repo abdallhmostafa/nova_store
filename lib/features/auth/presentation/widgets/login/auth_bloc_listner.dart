@@ -6,8 +6,8 @@ import 'package:nova_store/core/routes/routes_name.dart';
 import 'package:nova_store/core/utils/show_toast.dart';
 import 'package:nova_store/features/auth/presentation/bloc/auth_bloc.dart';
 
-class LoginBlocListner extends StatelessWidget {
-  const LoginBlocListner({super.key});
+class AuthBlocListner extends StatelessWidget {
+  const AuthBlocListner({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +15,7 @@ class LoginBlocListner extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
           loginSuccess: (response, userRole) {
-            ShowToast.showToastSuccessTop(
-              context: context,
+            ShowToast.showToastSuccess(
               message: context.translate(LangKeys.loggedSuccessfully),
             );
             if (userRole == 'admin') {
@@ -29,17 +28,28 @@ class LoginBlocListner extends StatelessWidget {
                 RoutesName.clientHomePage,
                 (route) => false,
               );
-            } else {
-              ShowToast.showToastErrorTop(
-                context: context,
+            } else if (userRole == null || userRole.isEmpty) {
+              ShowToast.showToastError(
                 message: 'user role not found',
               );
             }
           },
+          signUpSuccess: (response) {
+            ShowToast.showToastSuccess(
+              message: context.translate(LangKeys.signUpSuccessfully),
+            );
+            // Future.delayed(const Duration(seconds: 3), () {
+            //   ShowToast.showToastSuccess(
+            //     seconds: 4,
+            //     message: context.translate(
+            //       LangKeys.loginToAccount,
+            //     ),
+            //   );
+            // });
+          },
           orElse: () {},
           error: (error) {
-            ShowToast.showToastErrorTop(
-              context: context,
+            ShowToast.showToastError(
               message: error.isEmpty
                   ? context.translate(LangKeys.loggedError)
                   : error,

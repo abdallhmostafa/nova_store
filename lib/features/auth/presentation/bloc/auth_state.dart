@@ -8,5 +8,8 @@ class AuthState with _$AuthState {
     required LoginResponse response,
     String? userRole,
   }) = _LoginSuccessState;
+  const factory AuthState.signUpSuccess({
+    required SignUpResponseModel response,
+  }) = _SignUpSuccessState;
   const factory AuthState.error(String message) = _ErrorState;
 }

@@ -4,15 +4,17 @@ import 'package:nova_store/core/common/widgets/custom_text_field.dart';
 import 'package:nova_store/core/constants/app_constant.dart';
 import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
+
 class PasswordTextFeild extends StatefulWidget {
   const PasswordTextFeild({
     required this.controller,
     super.key,
     this.isConfirmPassword = false,
+    this.mainPasswordController,
   });
   final bool isConfirmPassword;
   final TextEditingController controller;
-
+  final TextEditingController? mainPasswordController;
   @override
   State<PasswordTextFeild> createState() => _PasswordTextFeildState();
 }
@@ -65,7 +67,7 @@ class _PasswordTextFeildState extends State<PasswordTextFeild> {
   String? _passConfirmValidate(String? value) {
     if (value!.isEmpty) {
       return 'Please confirm your password';
-    } else if (value != widget.controller.text) {
+    } else if (value != widget.mainPasswordController!.text) {
       return 'Passwords do not match';
     }
     return null;

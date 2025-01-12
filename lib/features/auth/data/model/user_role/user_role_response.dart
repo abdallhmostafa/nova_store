@@ -2,7 +2,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_role_response.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createToJson: false)
 class UserRoleResponse {
   UserRoleResponse({required this.userRole, required this.userId});
 

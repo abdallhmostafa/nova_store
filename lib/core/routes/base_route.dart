@@ -19,7 +19,7 @@ class BaseRoute extends PageRouteBuilder<dynamic> {
             const end = 1.0;
             final tween = Tween(begin: begin, end: end);
             final caurvesanimation = CurvedAnimation(
-                parent: animation, curve: Curves.linearToEaseOut);
+                parent: animation, curve: Curves.linearToEaseOut,);
 
             return ScaleTransition(
               scale: tween.animate(caurvesanimation),

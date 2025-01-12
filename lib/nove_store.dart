@@ -49,8 +49,8 @@ class NovaStore extends StatelessWidget {
       builder: (context, child) => GestureDetector(
         onTap: () {
           // FocusScope.of(context).unfocus();
-          FocusManager.instance.primaryFocus
-              ?.unfocus(); // to close keyboard from any where
+          // FocusManager.instance.primaryFocus
+          //     ?.unfocus(); // to close keyboard from any where
         },
         child: Scaffold(
           body: Builder(
@@ -62,6 +62,7 @@ class NovaStore extends StatelessWidget {
         ),
       ),
       title: 'Nova Store',
+      navigatorKey: serviceLocator<GlobalKey<NavigatorState>>(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
       initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,

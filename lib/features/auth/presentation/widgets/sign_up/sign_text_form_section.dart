@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova_store/core/common/animation/animate_do.dart';
 import 'package:nova_store/core/common/widgets/custom_text_field.dart';
@@ -6,6 +7,7 @@ import 'package:nova_store/core/constants/app_constant.dart';
 import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/lang/lang_keys.dart';
 import 'package:nova_store/core/utils/app_regex.dart';
+import 'package:nova_store/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:nova_store/features/auth/presentation/widgets/sign_up/password_and_confirem_section.dart';
 
 class SignTextFormSection extends StatelessWidget {
@@ -13,7 +15,9 @@ class SignTextFormSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<AuthBloc>();
     return Form(
+      key: cubit.formKey,
       child: Column(
         spacing: 25.h,
         children: [
@@ -29,7 +33,7 @@ class SignTextFormSection extends StatelessWidget {
                 }
                 return null;
               },
-              controller: TextEditingController(),
+              controller: cubit.nameController,
             ),
           ),
           CustomFadeInRight(
@@ -44,7 +48,7 @@ class SignTextFormSection extends StatelessWidget {
                 }
                 return null;
               },
-              controller: TextEditingController(),
+              controller: cubit.emailController,
             ),
           ),
           CustomFadeInRight(

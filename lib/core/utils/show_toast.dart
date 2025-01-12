@@ -5,30 +5,45 @@ import 'package:fluttertoast/fluttertoast.dart';
 final class ShowToast {
   const ShowToast._();
 
-  static void showToastErrorTop({
-    required BuildContext context,
+  static void showToastError({
     required String message,
     int? seconds,
+    ToastGravity gravity = ToastGravity.TOP,
   }) =>
       Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.TOP,
+        gravity: gravity,
         timeInSecForIosWeb: seconds ?? 3,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.sp,
       );
 
-  static void showToastSuccessTop({
-    required BuildContext context,
+  static void showToastLoading({
+    String message = 'Loading...',
+    int? seconds,
+    ToastGravity gravity = ToastGravity.TOP,
+  }) =>
+      Fluttertoast.showToast(
+        msg: message,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: gravity,
+        timeInSecForIosWeb: seconds ?? 3,
+        backgroundColor: Colors.orange,
+        textColor: Colors.white,
+        fontSize: 16.sp,
+      );
+
+  static void showToastSuccess({
     required String message,
     int? seconds,
+    ToastGravity gravity = ToastGravity.TOP,
   }) =>
       Fluttertoast.showToast(
         msg: message,
         toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.TOP,
+        gravity: gravity,
         timeInSecForIosWeb: seconds ?? 3,
         backgroundColor: Colors.green,
         textColor: Colors.white,

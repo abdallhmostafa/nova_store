@@ -1,7 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:nova_store/core/app/app_cubit/app_cubit.dart';
+import 'package:nova_store/core/app/upload_image/cubit/upload_image_cubit.dart';
+import 'package:nova_store/core/app/upload_image/datasource/upload_image_datasource.dart';
+import 'package:nova_store/core/app/upload_image/repo/upload_image_repo.dart';
 import 'package:nova_store/core/graphql/auth/auth_graphql.dart';
 import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/network/api_service.dart';
@@ -15,6 +19,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 final GetIt serviceLocator = GetIt.instance;
 
 void setupServiceLocator() {
+  final navigatorKey = GlobalKey<NavigatorState>();
   serviceLocator
     ..registerFactory(AppCubit.new)
     ..registerLazySingleton(AuthGraphql.new)
@@ -40,5 +45,22 @@ void setupServiceLocator() {
     )
     ..registerLazySingleton<SecureStorageHelper>(
       () => SecureStorageHelper(const FlutterSecureStorage()),
+    )
+    ..registerSingleton<GlobalKey<NavigatorState>>(
+      navigatorKey,
     );
+
+  _uploadImageService();
+}
+
+Future<void> _uploadImageService() async {
+  serviceLocator
+    ..registerLazySingleton<UploadImageDatasource>(
+      () => UploadImageDatasource(serviceLocator<ApiService>()),
+    )
+    ..registerLazySingleton<UploadImageRepo>(
+      () => UploadImageRepo(serviceLocator<UploadImageDatasource>()),
+    )
+    ..registerFactory<UploadImageCubit>(
+        () => UploadImageCubit(serviceLocator<UploadImageRepo>()),);
 }

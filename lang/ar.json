@@ -33,5 +33,11 @@
 "dark_mode": "Dark Mode",
 "lang_code": "العربية",
 "confirm_password": "تأكيد كلمة المرور",
-"loading": "جاري التحميل"
+"loading": "جاري التحميل",
+"uploading_the_image": "جاري تحميل الصورة",
+"upload_image_error": "حدث خطأ ما عند تحميل الصورة، حاول مرة اخرى",
+"sign_up_successfully": "تم التسجيل بنجاح",
+"sign_up_error": "حدث خطاء ما عند التسجيل، حاول مرة اخرى",
+"login_to_account": "جاري تسجيل الدخول...",
+"select_image": "الرجاء تحديد صورة"
 }

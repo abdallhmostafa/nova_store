@@ -107,6 +107,6 @@ class ColorExtenstion extends ThemeExtension<ColorExtenstion> {
     containerShadow2: AppColorsDark.black2,
     containerLinear1: AppColorsDark.black1,
     containerLinear2: AppColorsDark.black2,
-    pinkLightWithOpacity: AppColorsDark.blueLightWithOpacity
+    pinkLightWithOpacity: AppColorsDark.blueLightWithOpacity,
   );
 }

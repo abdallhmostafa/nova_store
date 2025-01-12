@@ -1,21 +1,25 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:nova_store/core/network/graphql/graphql_error_model.dart';
 
-part 'graphql_response.g.dart';
-
-@JsonSerializable(genericArgumentFactories: true)
 class GraphQLResponse<T> {
-  final T? data; // Nullable to handle error responses
-  final GraphqlErrorModel? errors;
-
   GraphQLResponse({this.data, this.errors});
-
   factory GraphQLResponse.fromJson(
     Map<String, dynamic> json,
     T Function(Object? json) fromJsonT,
-  ) =>
-      _$GraphQLResponseFromJson(json, fromJsonT);
+  ) {
+    return GraphQLResponse(
+      data: json['data'] != null ? fromJsonT(json['data']) : null,
+      errors: (json['errors'] as List<dynamic>?)
+          ?.map((e) => GraphqlErrorModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+  }
+  final T? data;
+  final List<GraphqlErrorModel>? errors;
 
-  Map<String, dynamic> toJson(Object Function(T value) toJsonT) =>
-      _$GraphQLResponseToJson(this, toJsonT);
+  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) {
+    return {
+      'data': data != null ? toJsonT(data as T) : null,
+      'errors': errors?.map((e) => e.toJson()).toList(),
+    };
+  }
 }

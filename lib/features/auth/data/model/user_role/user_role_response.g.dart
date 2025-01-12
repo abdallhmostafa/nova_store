@@ -11,4 +11,3 @@ UserRoleResponse _$UserRoleResponseFromJson(Map<String, dynamic> json) =>
       userRole: json['role'] as String?,
       userId: (json['id'] as num?)?.toInt(),
     );
-

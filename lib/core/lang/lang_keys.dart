@@ -2,6 +2,8 @@ abstract class LangKeys {
   static const String language = 'language';
   static const String appName = 'app_name';
   static const String login = 'login';
+  static const String uploadImageError = 'upload_image_error';
+  static const String uploadingTheImage = 'uploading_the_image';
   static const String welcome = 'welcome';
   static const String email = 'your_email';
   static const String password = 'password';
@@ -34,4 +36,8 @@ abstract class LangKeys {
   static const String langCode = 'lang_code';
   static const String confirmPassword = 'confirm_password';
   static const String loading = 'loading';
+  static const String signUpSuccessfully = 'sign_up_successfully';
+  static const String signUpError = 'sign_up_error';
+  static const String loginToAccount = 'login_to_account';
+  static const String selectImage = 'select_image';
 }
