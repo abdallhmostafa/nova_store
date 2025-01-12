@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:nova_store/core/di/dependency_injection.dart';
 import 'package:nova_store/core/helper/secure_storage_helper.dart';
 import 'package:nova_store/core/services/shared_pref/pref_keys.dart';
@@ -19,12 +18,14 @@ class DioFactory {
         'Content-Type': 'application/json',
         // 'Accept': '*/*',
         'Authorization':
+            // ignore: lines_longer_than_80_chars
             'Bearer ${serviceLocator.get<SecureStorageHelper>().read(key: PrefKeys.accessToken)}',
       };
 
-    debugPrint(
-      "[USER Token] ====> ${serviceLocator.get<SecureStorageHelper>().read(key: PrefKeys.accessToken)}",
-    );
+    // debugPrint(
+    //   "[USER Token] ====> ${serviceLocator.get<SecureStorageHelper>
+    //().read(key: PrefKeys.accessToken)}",
+    // );
 
     _addDioInterceptor();
     return dio;

@@ -53,7 +53,7 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<NetworkResult<SignUpResponseModel, GraphqlErrorModel>> signUp(
-      {required SignUpRequestModel signUpRequest}) async {
+      {required SignUpRequestModel signUpRequest,}) async {
     try {
       final response =
           await _authDataSource.signUp(signUpRequest: signUpRequest);

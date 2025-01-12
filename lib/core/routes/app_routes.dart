@@ -25,7 +25,7 @@ class AppRoutes {
             page: BlocProvider(
           create: (context) => serviceLocator<AuthBloc>(),
           child: const LoginPage(),
-        ));
+        ),);
       case RoutesName.signUpPage:
         return BaseRoute(
             page: MultiBlocProvider(
@@ -35,7 +35,7 @@ class AppRoutes {
             ),
           ],
           child: const SignUpPage(),
-        ));
+        ),);
       case RoutesName.adminHomePage:
         return BaseRoute(page: const AdminHomePage());
       case RoutesName.clientHomePage:

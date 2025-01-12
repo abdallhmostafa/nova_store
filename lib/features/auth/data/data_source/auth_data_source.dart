@@ -28,7 +28,7 @@ class AuthDataSource {
 
   // sign up
   Future<SignUpResponseModel> signUp(
-      {required SignUpRequestModel signUpRequest}) async {
+      {required SignUpRequestModel signUpRequest,}) async {
     final response = await apiService.signUp(
       authGraphql.signUpGraphql(signUpRequest: signUpRequest),
     );

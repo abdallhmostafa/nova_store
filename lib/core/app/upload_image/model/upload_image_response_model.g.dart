@@ -7,7 +7,7 @@ part of 'upload_image_response_model.dart';
 // **************************************************************************
 
 UploadImageResponseModel _$UploadImageResponseModelFromJson(
-        Map<String, dynamic> json) =>
+        Map<String, dynamic> json,) =>
     UploadImageResponseModel(
       location: json['location'] as String?,
     );

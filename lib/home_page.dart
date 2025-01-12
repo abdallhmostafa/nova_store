@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body:Placeholder()
+      body: const Placeholder(),
     );
   }
 }

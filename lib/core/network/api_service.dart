@@ -22,7 +22,7 @@ abstract class ApiService {
 
   @POST(_graphql)
   Future<SignUpResponseModel> signUp(
-      @Body() Map<String, dynamic> signUpRequest);
+      @Body() Map<String, dynamic> signUpRequest,);
 
   @GET(_api + _userRole)
   Future<UserRoleResponse> getUserRole();

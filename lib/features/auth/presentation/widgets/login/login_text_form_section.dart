@@ -29,7 +29,7 @@ class LoginTextFormSection extends StatelessWidget {
                 if (value!.isEmpty) {
                   return 'Please enter your email';
                 } else if (!AppRegex.isEmailValid(
-                    authBloc.emailController.text)) {
+                    authBloc.emailController.text,)) {
                   return 'Please enter a valid email';
                 }
                 return null;

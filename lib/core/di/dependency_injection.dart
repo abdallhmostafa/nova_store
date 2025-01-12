@@ -62,5 +62,5 @@ Future<void> _uploadImageService() async {
       () => UploadImageRepo(serviceLocator<UploadImageDatasource>()),
     )
     ..registerFactory<UploadImageCubit>(
-        () => UploadImageCubit(serviceLocator<UploadImageRepo>()));
+        () => UploadImageCubit(serviceLocator<UploadImageRepo>()),);
 }
