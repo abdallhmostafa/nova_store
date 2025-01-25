@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:nova_store/core/app/app_cubit/app_cubit.dart';
+import 'package:nova_store/core/app/app_navigation_observer.dart';
 import 'package:nova_store/core/common/pages/no_network_page.dart';
 import 'package:nova_store/core/di/dependency_injection.dart';
 import 'package:nova_store/core/lang/app_localizations_setup.dart';
@@ -49,8 +50,8 @@ class NovaStore extends StatelessWidget {
       builder: (context, child) => GestureDetector(
         onTap: () {
           // FocusScope.of(context).unfocus();
-          // FocusManager.instance.primaryFocus
-          //     ?.unfocus(); // to close keyboard from any where
+          FocusManager.instance.primaryFocus
+              ?.unfocus(); // to close keyboard from any where
         },
         child: Scaffold(
           body: Builder(
@@ -64,6 +65,9 @@ class NovaStore extends StatelessWidget {
       title: 'Nova Store',
       navigatorKey: serviceLocator<GlobalKey<NavigatorState>>(),
       onGenerateRoute: AppRoutes.onGenerateRoute,
+      navigatorObservers: [
+        AppNavigationObserver(),
+      ],
       initialRoute: initialRoute,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,

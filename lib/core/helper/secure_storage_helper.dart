@@ -10,7 +10,7 @@ class SecureStorageHelper {
 Future<String> initialRoute() async {
     return await _storage.read(key: PrefKeys.accessToken) !=
             null
-        ? await read(key: PrefKeys.userRole) ==
+        ? await read(key: PrefKeys.userRole) !=
                 'admin'
             ? RoutesName.adminHomePage
             : RoutesName.clientHomePage

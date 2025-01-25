@@ -40,4 +40,13 @@ abstract class LangKeys {
   static const String signUpError = 'sign_up_error';
   static const String loginToAccount = 'login_to_account';
   static const String selectImage = 'select_image';
+  static const String noveStore = 'nove_store';
+  static const String dashboard = 'dashboard';
+  static const String doYouWantToLogOut = 'do_you_want_to_log_out';
+  static const String notifications = 'notifications';
+  static const String settings = 'settings';
+  static const String categories = 'categories';
+  static const String products = 'products';
+  static const String users = 'users';
+  static const String dashBoard='dashBoard';
 }

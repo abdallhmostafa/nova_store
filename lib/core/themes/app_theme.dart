@@ -14,18 +14,19 @@ abstract class AppTheme {
       ColorExtenstion.light,
       AssetExtention.light,
     ],
-    textTheme: TextTheme(
+    fontFamily: FontFamilyHelper.getLocaleFontFamily(),
+    textTheme: const TextTheme(
       displaySmall: TextStyle(
         fontSize: 14,
         fontWeight: FontWeight.w400,
         color: AppColorsLight.black,
-        fontFamily: FontFamilyHelper.getLocaleFontFamily(),
       ),
     ),
   );
 
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColorsDark.mainColor,
+    fontFamily: FontFamilyHelper.getLocaleFontFamily(),
     brightness: Brightness.dark,
     primaryColor: AppColorsDark.mainColor,
     extensions: <ThemeExtension>[
