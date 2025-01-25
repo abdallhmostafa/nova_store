@@ -7,7 +7,7 @@ class TextApp extends StatelessWidget {
     this.maxLines,
     this.softWrap,
     this.textOverflow,
-    this.textAlign,
+    this.textAlign = TextAlign.center,
     super.key,
   });
   final String text;

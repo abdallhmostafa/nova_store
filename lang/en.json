@@ -39,5 +39,15 @@
     "sign_up_successfully": "Sign up successfully",
     "sign_up_error": "There was an error signing up, try again",
     "login_to_account": "Logging to your account...",
-    "select_image": "Please, select an image"
+    "select_image": "Please, select an image",
+    "nove_store": "Nove Store",
+    "doYouWantToLogOut": "Do you want to log out?",
+    "notifications": "Notifications",
+    "settings ": "Settings",
+    "categories": "Categories",
+    "products": "Products",
+    "users": "Users",
+    "orders": "Orders",
+    "dashBoard": "DashBoard",
+    "do_you_want_to_log_out": "Do you want to log out?"
 }

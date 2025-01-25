@@ -17,7 +17,7 @@ extension ContextExtention on BuildContext {
 
   // -------------------------- TextStyle -------------------------- //
 
-TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
+  TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
 
   // -------------------------- Navigator -------------------------- //
   void pushNamed(String routeName, {Object? arguments}) {
