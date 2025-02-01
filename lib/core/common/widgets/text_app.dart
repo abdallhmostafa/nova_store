@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class TextApp extends StatelessWidget {
-  const TextApp({
+  const TextApp( {
     required this.text,
     required this.theme,
     this.maxLines,

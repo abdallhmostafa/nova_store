@@ -49,4 +49,5 @@ abstract class LangKeys {
   static const String products = 'products';
   static const String users = 'users';
   static const String dashBoard='dashBoard';
+  static const String refresh='refresh';
 }
