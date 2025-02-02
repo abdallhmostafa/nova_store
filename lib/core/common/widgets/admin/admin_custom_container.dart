@@ -1,24 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:nova_store/core/common/loading/loading_shimmer.dart';
 import 'package:nova_store/core/common/widgets/text_app.dart';
 import 'package:nova_store/core/extensions/context_extention.dart';
 import 'package:nova_store/core/styles/colors/app_colors_dark.dart';
 import 'package:nova_store/core/styles/fonts/font_wieght_helper.dart';
+import 'package:nova_store/features/admin/dashboard_page/presentation/widgets/admin_dashboard_categories_number.dart';
+import 'package:nova_store/features/admin/dashboard_page/presentation/widgets/admin_dashboard_products_number.dart';
+import 'package:nova_store/features/admin/dashboard_page/presentation/widgets/admin_dashboard_users_number.dart';
+import 'package:nova_store/features/admin/dashboard_page/presentation/widgets/enum_admin_dashboard_number.dart';
 
 class AdminCustomContainer extends StatelessWidget {
   const AdminCustomContainer({
     required this.title,
-    required this.count,
     required this.image,
-    this.isLoading = false,
+    required this.type,
     super.key,
   });
-  final bool isLoading;
   final String title;
-  final String count;
   final String image;
-
+  final AdminDashboardNumberType type;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,16 +44,12 @@ class AdminCustomContainer extends StatelessWidget {
                 ),
                 text: title,
               ),
-              if (isLoading)
-                const LoadingShimmer()
+              if (type == AdminDashboardNumberType.products)
+                const AdminDashboardProductsNumber()
               else
-                TextApp(
-                  theme: context.textStyle.copyWith(
-                    fontSize: 24.sp,
-                    fontWeight: FontWieghtHelper.bold,
-                  ),
-                  text: count,
-                ),
+                type == AdminDashboardNumberType.categories
+                    ? const AdminDashboardCategoriesNumber()
+                    : const AdminDashboardUsersNumber(),
             ],
           ),
         ),
