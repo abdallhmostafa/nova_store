@@ -33,6 +33,7 @@ class DashboardPageBody extends StatelessWidget {
       },
       child: ListView(
         padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
+        physics: const AlwaysScrollableScrollPhysics(),
         children: [
           AdminCustomContainer(
             title: context.translate(LangKeys.products),
