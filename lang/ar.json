@@ -49,5 +49,6 @@
     "users": "المستخدمين",
     "orders": "الطلبات",
     "dashBoard": "لوحة التحكم",
-    "do_you_want_to_log_out": "هل تريد تسجيل الخروج؟"
+    "do_you_want_to_log_out": "هل تريد تسجيل الخروج؟",
+    "refresh": "تحديث"
 }
